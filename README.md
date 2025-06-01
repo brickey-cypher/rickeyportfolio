@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Astro Starter Kit: Basics
 
 ```sh
@@ -46,3 +47,7 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+=======
+# rickeyportfolio
+My cybersecurity portfolio build on VSCode with Astro and Tailwind, hosted on Netlify.
+>>>>>>> 8397e41488828bdad655bdc84d19cab8ecd8965a
