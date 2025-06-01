@@ -1,11 +1,24 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout>
-	<Welcome />
+<a
+  href="/about"
+  class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+>
+  About Me
+</a>
+
+<Layout title="Home | Brianna Marie Rickey">
+  <main class="max-w-3xl mx-auto py-12 px-6 text-center">
+    <h1 class="text-4xl font-bold mb-4">Welcome to My Cybersecurity Portfolio</h1>
+    <p class="text-lg text-gray-700">
+      Hi, I'm Brianna—an aspiring cybersecurity specialist focused on social engineering, threat
+      analysis, and digital defense.
+    </p>
+    <p class="mt-6 text-md text-gray-600">
+      Explore my <a href="/projects" class="underline text-blue-600 hover:text-blue-800">projects</a
+      > to see how I’m building my skillset and securing the digital world.
+    </p>
+  </main>
 </Layout>
