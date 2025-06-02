@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props;
+import '../styles/global.css'
+const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
 ---
 
 <!doctype html>
@@ -13,7 +13,16 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <title>{title}</title>
   </head>
 
-  <body class="bg-white text-black min-h-screen antialiased">
-    <slot />
+  <body class="relative bg-gray-900 text-white min-h-screen antialiased overflow-hidden">
+    <!-- Subtle tech background -->
+    <div
+      class="absolute inset-0 bg-[url('/backgrounds/tech-grid.svg')] opacity-10 bg-cover bg-center z-0 pointer-events-none"
+    >
+    </div>
+
+    <!-- Content sits above background -->
+    <div class="relative z-10">
+      <slot />
+    </div>
   </body>
 </html>
