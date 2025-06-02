@@ -1,38 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import BehindTheScenes from '../components/BehindTheScenes.astro'
+import BackgroundSection from '../components/BackgroundSection.astro'
 ---
 
 <Layout title="Home | Brianna Marie Rickey">
-  <main class="relative overflow-hidden text-white">
-    <!-- Techy background image overlay -->
-    <div
-      class="absolute inset-0 bg-[url('/backgrounds/tech-grid.svg')] opacity-10 bg-cover bg-center z-0"
-    >
-    </div>
-
-    <!-- Main content -->
-    <section
-      class="relative z-10 max-w-3xl mx-auto py-12 px-6 text-center bg-black bg-opacity-20 rounded-lg"
-    >
-      <h1 class="text-4xl font-bold mb-4 text-white">Welcome to My Cybersecurity Portfolio</h1>
-      <p class="text-lg text-gray-300">
-        Hi, I'm Brianna—an aspiring cybersecurity specialist focused on social engineering, threat
-        analysis, and digital defense.
-      </p>
-      <p class="mt-6 text-md text-gray-400">
-        Explore my <a href="/projects" class="underline text-blue-400 hover:text-blue-600"
-          >projects</a
-        > to see how I’m building my skillset and securing the digital world.
-      </p>
-      <div class="mt-8">
-        <a
-          href="/about"
-          class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        >
-          About Me
-        </a>
-      </div>
-    </section>
+  <main>
+    <BackgroundSection backgroundImage="/backgrounds/tech-grid.svg" opacity={0.1}>
+      <section class="max-w-3xl mx-auto py-12 px-6 text-center bg-black bg-opacity-20 rounded-lg">
+        <h1 class="text-4xl font-bold mb-4 text-white">Welcome to My Cybersecurity Portfolio</h1>
+        <p class="text-lg text-gray-300">
+          Hi, I'm Brianna—an aspiring cybersecurity specialist focused on social engineering, threat
+          analysis, and digital defense.
+        </p>
+        <p class="mt-6 text-md text-gray-400">
+          Explore my <a href="/projects" class="underline text-blue-400 hover:text-blue-600"
+            >projects</a
+          >
+          to see how I’m building my skillset and securing the digital world.
+        </p>
+        <div class="mt-8">
+          <a
+            href="/about"
+            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            About Me
+          </a>
+        </div>
+      </section>
+    </BackgroundSection>
   </main>
 </Layout>
