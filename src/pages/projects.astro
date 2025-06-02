@@ -14,50 +14,39 @@ const projects = [
       'Full risk assessment for a coastal bank—scored threats by likelihood and severity and built a mitigation matrix.',
     pdf: '/projects/risk-register.pdf',
   },
-  {
-    title: 'Scope, Goals, & Risk Assessment Report',
-    description:
-      'Comprehensive audit of Botium Toys: asset review, control checklist, and gap-analysis recommendations.',
-    pdf: '/projects/scope-goals-risk-assessment-report.pdf',
-  },
-  {
-    title: 'Incident Report – Network Traffic Analysis',
-    description:
-      'Analyzed SYN-flood DoS against a web server; explained TCP handshake abuse and recommended mitigations.',
-    pdf: '/projects/incident-report-network-traffic-analysis.pdf',
-  },
-  {
-    title: 'Incident Report Analysis (ICMP Flood)',
-    description:
-      'Simulated DDoS response mapped to the NIST Cybersecurity Framework; documented detect / protect / recover steps.',
-    pdf: '/projects/incident-report-analysis.pdf',
-  },
-  {
-    title: 'Home Asset Inventory',
-    description:
-      'Cataloged home-network devices, sensitivity levels, and applied least-privilege access designations.',
-    pdf: '/projects/home-asset-inventory.pdf',
-  },
-  {
-    title: 'File Permissions in Linux',
-    description:
-      'Audited and corrected Linux file & directory permissions to align with team-based access requirements.',
-    pdf: '/projects/file-permissions-linux.pdf',
-  },
-  {
-    title: 'Data Leak Worksheet',
-    description:
-      'Investigated data exposure due to excessive privileges; applied NIST SP 800-53 AC-6 to tighten least-privilege.',
-    pdf: '/projects/data-leak-worksheet.pdf',
-  },
-  {
-    title: 'Apply Filters to SQL Queries',
-    description:
-      'Demonstrated securing data by filtering SQL queries while updating employee systems and investigating issues.',
-    pdf: '/projects/apply-filters-sql-queries.pdf',
-  },
+  // ...rest of your projects here
   {
     title: 'Algorithm for File Updates in Python',
     description:
       'Python script that auto-updates an IP allow-list by removing addresses found in a deny-list to reduce human error.',
-    pdf: '/projects/algorithm-file-updates-python.pdf'
+    pdf: '/projects/algorithm-file-updates-python.pdf',
+  },
+];
+---
+
+<Layout title="Projects | Brianna Rickey">
+  <section class="my-12 px-6">
+    <h1 class="text-3xl font-bold text-center mb-8">Projects</h1>
+
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        projects.map((p) => (
+          <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between">
+            <div>
+              <h2 class="text-xl font-semibold mb-2 text-gray-900">{p.title}</h2>
+              <p class="text-gray-700 mb-4">{p.description}</p>
+            </div>
+            <a
+              href={p.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-auto inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              View&nbsp;Details
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
