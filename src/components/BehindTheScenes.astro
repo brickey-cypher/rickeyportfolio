@@ -1,0 +1,44 @@
+---
+const images = [
+  "/images/bts1.png",
+  "/images/bts2.png"
+];
+const jsCode = `
+  const images = ${JSON.stringify(images)};
+  let current = 0;
+
+  function showImage(index) {
+    const imageElement = document.getElementById('slideshow-image');
+    if (imageElement) {
+      imageElement.src = images[index];
+    }
+  }
+
+  function nextImage() {
+    current = (current + 1) % images.length;
+    showImage(current);
+  }
+
+  function previousImage() {
+    current = (current - 1 + images.length) % images.length;
+    showImage(current);
+  }
+`;
+---
+
+<section class="my-8 p-4 bg-gray-100 rounded-xl shadow-md">
+  <h2 class="text-2xl font-bold mb-4">Behind the Scenes</h2>
+  <p class="mb-4">Here's a peek at the VSCode files that brought this portfolio to life.</p>
+
+  <div class="flex flex-col items-center space-y-4">
+    <img id="slideshow-image" src={images[0]} alt="Behind the scenes image" class="w-full max-w-xl rounded-lg shadow-md transition-all duration-300" />
+
+    <div class="flex space-x-4">
+      <button onclick="previousImage()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Previous</button>
+      <button onclick="nextImage()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Next</button>
+    </div>
+  </div>
+</section>
+
+<!-- Safely inject JavaScript into the page -->
+<Fragment set:html={`<script>${jsCode}</script>`} />
