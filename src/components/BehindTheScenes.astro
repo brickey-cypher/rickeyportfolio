@@ -40,5 +40,6 @@ const jsCode = `
   </div>
 </section>
 
-<!-- Safely inject JavaScript into the page -->
-<Fragment set:html={`<script>${jsCode}</script>`} />
+<script is:inline>
+  {jsCode}
+</script>
