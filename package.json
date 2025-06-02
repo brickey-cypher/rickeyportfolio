@@ -8,11 +8,20 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "dependencies": {
-    "@astrojs/netlify": "^6.3.4",
-    "@astrojs/react": "^4.3.0",
-    "@tailwindcss/vite": "^4.1.8",
-    "astro": "^5.8.1",
-    "tailwindcss": "^4.1.8"
+"dependencies": {
+  "@astrojs/netlify": "^6.3.4",
+  "@astrojs/react": "^4.3.0",
+  "@astrojs/tailwind": "^6.0.2",
+  "astro": "^5.8.1",
+  "autoprefixer": "^10.4.19",
+  "postcss": "^8.4.21",
+  "tailwindcss": "^3.3.3"
+}
+  ,
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^3.4.17"
   }
 }
