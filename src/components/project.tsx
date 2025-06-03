@@ -53,3 +53,4 @@ export default function Projects({ projects }: ProjectsProps) {
     </div>
   </section>
 )
+}
