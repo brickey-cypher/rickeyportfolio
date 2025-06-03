@@ -1,29 +1,21 @@
 ---
-// Props
-const {
-  backgroundImage,
-  opacity = 0.5, // Default semi-transparent overlay
-  textOutline = true,
-} = Astro.props
-
-const tailwindOpacity = Math.round(opacity * 100) // Converts 0.5 to 50
+import BackgroundSection from '../components/BackgroundSection.astro'
 ---
 
-<section
-  class="relative bg-cover bg-center text-white py-16 px-4"
-  style={`background-image: url(${backgroundImage})`}
->
-  <!-- Responsive and controlled overlay -->
-  <div class={`absolute inset-0 bg-black/${tailwindOpacity}`} aria-hidden="true"></div>
+<BackgroundSection backgroundImage="/assets/bts-background.jpg" opacity={0.6} textOutline={true}>
+  <div>
+    <h1 class="text-4xl font-bold mb-6">Behind the Scenes</h1>
+    <p class="text-lg mb-10 max-w-2xl">
+      This portfolio wasn’t just built—it was carefully crafted with intention, iteration, and a
+      whole lot of trial and error.
+    </p>
 
-  <!-- Content with optional text outline -->
-  <div class={`relative z-10 max-w-4xl mx-auto ${textOutline ? 'text-outline' : ''}`}>
-    <slot />
+    <p class="text-base max-w-3xl">
+      This is a fully responsive cybersecurity portfolio website built in VS Code using Astro,
+      React, and Tailwind CSS. It showcases my skills and projects through an intuitive design with
+      dynamic views and smooth navigation, optimized for both mobile and desktop. I focused on
+      writing clean, maintainable code and used AI tools to accelerate development while maintaining
+      full understanding and control over every piece of the project.
+    </p>
   </div>
-</section>
-
-<style>
-  .text-outline {
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-  }
-</style>
+</BackgroundSection>
