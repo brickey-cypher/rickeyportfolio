@@ -30,7 +30,7 @@ export default function Projects({ projects }: ProjectsProps) {
         className={`transition-all ${
           grid
             ? 'grid grid-cols-2 md:grid-cols-3 gap-4 w-full text-[0.75rem] sm:text-sm'
-            : 'flex overflow-x-auto space-x-4 snap-x snap-mandatory pb-4'
+            : 'flex flex-col space-y-4 pb-4 w-full'
         }`}
       >
         {projects.map((p) => (
