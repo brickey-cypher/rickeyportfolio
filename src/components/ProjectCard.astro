@@ -1,20 +1,20 @@
 ---
 export interface Props {
-  title: string
-  description: string
-  pdfFile: string
+  title: string;
+  description: string;
+  pdf: string;  // changed from pdfFile to pdf to match your data
 }
 
-const { title, description, pdfFile } = Astro.props
+const { title, description, pdf } = Astro.props;
 ---
 
 <article class="bg-neutral-900 p-6 rounded-2xl shadow-md flex flex-col gap-4">
   <h3 class="text-xl font-semibold text-white">{title}</h3>
   <p class="text-neutral-400">{description}</p>
 
-  <!-- Opens the PDF in a new tab -->
+  <!-- Use the full pdf path directly -->
   <a
-    href={`/projects/${pdfFile}`}
+    href={pdf}
     target="_blank"
     rel="noopener noreferrer"
     class="mt-auto inline-block text-sm text-rose-500 hover:underline"
