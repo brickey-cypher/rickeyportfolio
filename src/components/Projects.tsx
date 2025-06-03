@@ -7,7 +7,60 @@ const projects = [
       'Investigated a web-based malware incident involving HTTP traffic. Used tcpdump to analyze redirection patterns and identify a malicious file disguised as a browser update. Discovered that the attacker compromised site access via brute-force attack, resulting in user infections and admin lockout',
     pdf: '/projects/security-incident-assessment-report.pdf',
   },
-  // ...other projects...
+  {
+    title: 'Risk Register',
+    description:
+      'Conducted a risk assessment for a coastal bank with on-premise and remote employees. Evaluated key assets including funds, user databases, and financial records, scoring risks by likelihood and severity. Prioritized mitigation efforts based on a risk matrix to strengthen security and compliance with financial regulations.',
+    pdf: '/projects/risk-register.pdf',
+  },
+  {
+    title: 'Scope, Goals, & Risk Assessment Report',
+    description:
+      "Conducted a comprehensive security audit of Botium Toys, reviewing assets, internal systems, and compliance practices. Assessed security controls and completed a compliance checklist to identify gaps and recommend improvements to enhance the organization's overall security posture.",
+    pdf: '/projects/cybersecurity-incident-report.pdf',
+  },
+  {
+    title: 'Incident Report Network Traffic Analysis',
+    description:
+      'Analyzed a network disruption caused by a SYN flood attack targeting a web server. Identified excessive TCP SYN requests overwhelming the server, preventing legitimate connections. Explained the TCP three-way handshake and how the attack exploits it to cause a denial of service.',
+    pdf: '/projects/incident-report-network-analysis.pdf',
+  },
+  {
+    title: 'Incident Report Analysis',
+    description:
+      'Responded to a simulated DDoS attack caused by an ICMP flood. Documented mitigation steps and mapped actions to the NIST Cybersecurity Framework: identifying the threat, protecting critical services, detecting anomalies, and initiating recovery procedures.',
+    pdf: '/projects/cybersecurity-incident-analysis.pdf',
+  },
+  {
+    title: 'Home Asset Inventory',
+    description:
+      'Created an asset inventory for home network devices, assessing ownership, sensitivity, and access designations. Evaluated security posture and applied access control principles to categorize network assets.',
+    pdf: '/projects/home-asset-inventory.pdf',
+  },
+  {
+    title: 'File Permissions in Linux',
+    description:
+      'Audited and adjusted file and directory permissions to align with team access requirements. Ensured secure system configuration by verifying details and applying appropriate permission settings.',
+    pdf: '/projects/file-permissions-linux.pdf',
+  },
+  {
+    title: 'Data Leak Worksheet',
+    description:
+      'Investigated a data leak tied to excessive access. Applied NIST SP 800-53 AC-6 to assess failures, and recommended role-based restrictions and audits to strengthen least privilege enforcement.',
+    pdf: '/projects/data-leak-worksheet.pdf',
+  },
+  {
+    title: 'Apply Filters to SQL Queries',
+    description:
+      'Used SQL with filters to perform security tasks like identifying unauthorized access attempts, checking for inconsistencies in device inventory, and verifying user roles and permissions. Demonstrated how query filtering supports system hardening and ongoing monitoring.',
+    pdf: '/projects/apply-filter-SQL-queries.pdf',
+  },
+  {
+    title: 'Algorithm for File Updates in Python',
+    description:
+      'Python script that auto-updates an IP allow-list by removing addresses found in a deny-list to reduce human error. Streamlines access control for restricted resources.',
+    pdf: '/projects/algorithm-file-updates-python.pdf',
+  },
 ];
 
 export default function Projects() {
@@ -58,3 +111,4 @@ export default function Projects() {
     </section>
   );
 }
+
