@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro'
+import BackgroundSection from '../components/BackgroundSection.astro'
+---
+
+<Layout title="Behind the Scenes | Brianna Marie Rickey">
+  <main>
+    <BackgroundSection
+      backgroundImage="/backgrounds/bts-background.jpg"
+      opacity={0.6}
+      textOutline={true}
+    >
+      <h1 class="text-4xl font-bold mb-6">Behind the Scenes</h1>
+      <p class="text-lg mb-10 max-w-2xl">
+        This portfolio wasn’t just built—it was carefully crafted with intention, iteration, and a
+        whole lot of trial and error.
+      </p>
+
+      <p class="text-gray-200 max-w-3xl mx-auto mb-6">
+        Here you'll find my elevator pitch, build diary, and snapshots of code to highlight the
+        depth and care behind this project.
+      </p>
+    </BackgroundSection>
+  </main>
+</Layout>
