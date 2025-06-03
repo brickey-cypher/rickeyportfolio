@@ -30,5 +30,10 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <div class="relative z-10">
       <slot />
     </div>
+    <script type="module">
+      import Alpine from 'alpinejs'
+      window.Alpine = Alpine
+      Alpine.start()
+    </script>
   </body>
 </html>
