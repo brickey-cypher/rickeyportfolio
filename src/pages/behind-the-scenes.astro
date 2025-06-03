@@ -11,15 +11,114 @@ import BackgroundSection from '../components/BackgroundSection.astro'
       textOutline={true}
     >
       <h1 class="text-4xl font-bold mb-6">Behind the Scenes</h1>
-      <p class="text-lg mb-10 max-w-2xl">
+
+      <p class="text-lg mb-6 max-w-2xl mx-auto">
         This portfolio wasn’t just built—it was carefully crafted with intention, iteration, and a
         whole lot of trial and error.
       </p>
 
-      <p class="text-gray-200 max-w-3xl mx-auto mb-6">
-        Here you'll find my elevator pitch, build diary, and snapshots of code to highlight the
-        depth and care behind this project.
+      <h2 class="text-2xl font-semibold mb-4 mt-10">Elevator Pitch</h2>
+      <p class="max-w-3xl mx-auto mb-8">
+        This is a fully responsive cybersecurity portfolio website built in VSCode using Astro,
+        React, and Tailwind CSS. It showcases my skills and projects through an intuitive design
+        with dynamic views and easy navigation optimized for both mobile and desktop. The site
+        focuses on clean, maintainable code, leveraging AI tools to speed up development while
+        ensuring I deeply understand and control every part of the project.
       </p>
+
+      <section class="overflow-x-auto mt-12">
+        <table class="min-w-full border border-gray-300 text-left text-sm text-gray-800">
+          <thead class="bg-gray-100 text-gray-700 font-semibold">
+            <tr>
+              <th class="border px-4 py-2">Phase</th>
+              <th class="border px-4 py-2">Key Actions & Decisions</th>
+              <th class="border px-4 py-2">Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">1. Project Bootstrapping</td>
+              <td class="border px-4 py-2"
+                >Create Astro project, minimal cleanup, remove `README.md`, init Git</td
+              >
+              <td class="border px-4 py-2">Clear Astro skeleton structure</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">2. Core Styling</td>
+              <td class="border px-4 py-2"
+                >Install Tailwind, update `tailwind.config.cjs`, `postcss.config.cjs`, global styles
+                in `src/styles/global.css`</td
+              >
+              <td class="border px-4 py-2">Tailwind utilities available project-wide</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">3. React Integration</td>
+              <td class="border px-4 py-2">Install React, `@astrojs/react`</td>
+              <td class="border px-4 py-2">Ready to drop in JSX components</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">4. Netlify Adapter</td>
+              <td class="border px-4 py-2"
+                >Install `@astrojs/netlify`, set config in `astro.config.mjs`, add adapter to
+                `import`</td
+              >
+              <td class="border px-4 py-2">Auto builds use Netlify-friendly output</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">5. Global Layout</td>
+              <td class="border px-4 py-2"
+                >Created `src/layouts/Layout.astro` with shared header/footer</td
+              >
+              <td class="border px-4 py-2">Single shared shell for every page</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">6. Pages</td>
+              <td class="border px-4 py-2">Home, About, Projects, Behind the Scenes</td>
+              <td class="border px-4 py-2">Clear, minimal routing</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">7. Components</td>
+              <td class="border px-4 py-2"
+                >Made `BackgroundSection.astro`, `ProjectCard.astro`, etc.</td
+              >
+              <td class="border px-4 py-2">Re-usable chunks per section</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">8. PDFs & Static Assets</td>
+              <td class="border px-4 py-2"
+                >Placed all PDFs in `public/projects/` and linked in cards</td
+              >
+              <td class="border px-4 py-2">Downloads open in new tab</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">9. Git & GitHub</td>
+              <td class="border px-4 py-2">Commits, `.gitignore`, pushed to GitHub</td>
+              <td class="border px-4 py-2">Source fully tracked & visible</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">10. Netlify Deployment</td>
+              <td class="border px-4 py-2">Connected repo → Netlify → auto-deploy from `main`</td>
+              <td class="border px-4 py-2">Live site with deploy preview</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">11. Post-Launch Polish</td>
+              <td class="border px-4 py-2"
+                >Added `redirects` file, final `astro.config.mjs` cleanup</td
+              >
+              <td class="border px-4 py-2">Production-ready polish</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="text-center mt-12">
+        <a
+          href="/"
+          class="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
+        >
+          Back to Home
+        </a>
+      </div>
     </BackgroundSection>
   </main>
 </Layout>
