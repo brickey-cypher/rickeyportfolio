@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import ProjectsComponent from '../components/project.tsx'
 
 const projects = [
   {
@@ -62,38 +63,9 @@ const projects = [
       'Python script that auto-updates an IP allow-list by removing addresses found in a deny-list to reduce human error. Streamlines access control for restricted resources.',
     pdf: '/projects/algorithm-file-updates-python.pdf',
   },
-]
+];
 ---
 
 <Layout title="Projects | Brianna Rickey">
-  <section class="my-12 px-6">
-    <h1 class="text-3xl font-bold text-center mb-8">Projects</h1>
-
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {
-        projects.map((p) => (
-          <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between">
-            <div>
-              <h2 class="text-xl font-semibold mb-2 text-gray-900">{p.title}</h2>
-              <p class="text-gray-700 mb-4">{p.description}</p>
-            </div>
-            <a
-              href={p.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-auto inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-            >
-              View&nbsp;Details
-            </a>
-          </div>
-        ))
-      }
-    </div>
-    <a
-      href="/"
-      class="inline-block bg-gray-800 text-white px-4 py-2 mt-8 rounded hover:bg-gray-900 transition"
-    >
-      Back to Home
-    </a>
-  </section>
+  <ProjectsComponent client:load projects={projects} />
 </Layout>
