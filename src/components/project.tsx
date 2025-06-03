@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import type { Project } from './types';
 
-
 interface ProjectsProps {
   projects: Project[];
 }
@@ -26,7 +25,7 @@ export default function Projects({ projects }: ProjectsProps) {
       <div
         className={`transition-all ${
           grid
-            ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'
+            ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full'
             : 'flex overflow-x-auto space-x-4 snap-x snap-mandatory pb-4'
         }`}
       >
