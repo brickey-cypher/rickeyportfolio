@@ -18,9 +18,32 @@ import BackgroundSection from '../components/BackgroundSection.astro'
           Hi, I'm Brianna—an aspiring cybersecurity specialist focused on social engineering, threat
           analysis, and digital defense.
         </p>
+
         <p class="mt-6 text-md text-gray-200">
-          Explore my <a href="/projects" class="underline text-blue-400 hover:text-blue-600"
+          Explore my
+          <a href="/projects" class="underline text-blue-400 hover:text-blue-600"> projects </a>
+          to see how I’m building my skillset and securing the digital world.
         </p>
-      </section></BackgroundSection>
-  </main></Layout
->
+
+        <div class="mt-8 space-y-4">
+          <a
+            href="/about"
+            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            About Me
+          </a>
+
+          <div>
+            <p class="text-sm text-gray-200 mb-2">Want to know what went into making this site?</p>
+            <a
+              href="/behind-the-scenes"
+              class="inline-block bg-gray-100 text-blue-700 px-4 py-2 rounded hover:bg-white hover:shadow transition"
+            >
+              Go Behind the Scenes
+            </a>
+          </div>
+        </div>
+      </section>
+    </BackgroundSection>
+  </main>
+</Layout>
