@@ -10,7 +10,8 @@ export default function Projects({ projects }: ProjectsProps) {
 
   return (
   <section className="my-12 px-4 sm:px-6">
-    <h1 className="text-3xl font-bold text-center mb-6">Projects</h1>
+   <h1 className="text-3xl font-bold text-center mb-6 text-gray-100">Projects</h1>
+
 
     <div className="flex justify-end mb-4">
       <button
