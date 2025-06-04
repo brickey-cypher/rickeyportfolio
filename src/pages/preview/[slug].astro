@@ -1,9 +1,22 @@
 ---
 import BackButton from '../../components/BackButton.astro'
 
+// All filenames without `.svg` extension from /public/svgs
 export async function getStaticPaths() {
-  // List the actual filenames (no .svg extension)
-  const slugs = ['codesnippet', 'anotherfile', 'whatever-you-named-your-svg']
+  const slugs = [
+    'tailwind.config',
+    'postcss.config',
+    'global',
+    'astro.config',
+    'Layout',
+    'netlify',
+    'about',
+    'BackgroundSection',
+    'index',
+    'Projects',
+    'ProjectCard',
+    'behind-the-scenes',
+  ]
 
   return slugs.map((slug) => ({
     params: { slug },
@@ -14,8 +27,13 @@ const { slug } = Astro.params
 const imagePath = `/svgs/${slug}.svg`
 ---
 
-<div class="p-4">
+<div class="p-4 max-w-4xl mx-auto">
   <BackButton href="/behind-the-scenes" label="Back to Behind the Scenes" />
 
-  <img src={imagePath} alt={`${slug} Preview`} class="w-full border border-gray-300 rounded mt-4" />
+  <img
+    src={imagePath}
+    alt={`${slug} Preview`}
+    class="w-full border border-gray-300 rounded mt-4"
+    loading="lazy"
+  />
 </div>
