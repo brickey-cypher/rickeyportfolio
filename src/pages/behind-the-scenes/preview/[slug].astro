@@ -1,6 +1,6 @@
 ---
-
-// All filenames without `.svg` extension from /public/svgs
+// Update the path below if BackButton.astro is in a different folder
+import BackButton from '../../../components/BackButton.astro'
 export async function getStaticPaths() {
   const slugs = [
     'tailwind.config',
@@ -24,4 +24,15 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params
 const imagePath = `/svgs/${slug}.svg`
+
+// Set where the back button should lead. Adjust as needed.
+const backHref = '/behind-the-scenes'
 ---
+
+<main class="p-6">
+  <BackButton href={backHref} label="Back to Behind the Scenes" />
+
+  <div class="mt-6">
+    <img src={imagePath} alt={`${slug} svg`} class="max-w-full h-auto" />
+  </div>
+</main>
