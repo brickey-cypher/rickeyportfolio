@@ -45,97 +45,98 @@ import BackgroundSection from '../components/BackgroundSection.astro'
             </tr>
             <tr>
               <td class="border border-black px-4 py-2">2. Core Styling</td>
-              <td class="border border-black px-4 py-2"
-                >Install Tailwind, update <code>tailwind.config.cjs</code>, <code
-                  >postcss.config.cjs</code
-                >, global styles in <code>src/styles/global.css</code></td
-              >
-              <td class="border border-black px-4 py-2"
-                >Tailwind utilities available project-wide</td
-              >
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">3. React Integration</td>
-              <td class="border border-black px-4 py-2"
-                >Install React, <code>@astrojs/react</code></td
-              >
-              <td class="border border-black px-4 py-2">Ready to drop in JSX components</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">4. Netlify Adapter</td>
               <td class="border border-black px-4 py-2">
-                Install <code>@astrojs/netlify</code>, update config in
+                Install Tailwind, update
                 <a
-                  href="/images/astro.config.mjs.svg"
+                  href="/images/tailwind.config.cjs.svg"
                   target="_blank"
                   class="underline text-blue-400 hover:text-blue-600"
                 >
-                  <code>astro.config.mjs</code>
-                </a>, add adapter import
+                  <code>tailwind.config.cjs</code>
+                </a>,
               </td>
-              >
-              <td class="border border-black px-4 py-2">Auto builds use Netlify-friendly output</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">5. Global Layout</td>
-              <td class="border border-black px-4 py-2"
-                >Created <code>src/layouts/Layout.astro</code> with shared header/footer</td
-              >
-              <td class="border border-black px-4 py-2">Single shared shell for every page</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">6. Pages</td>
-              <td class="border border-black px-4 py-2">Home, About, Projects, Behind the Scenes</td
-              >
-              <td class="border border-black px-4 py-2">Clear, minimal routing</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">7. Components</td>
-              <td class="border border-black px-4 py-2"
-                >Made <code>BackgroundSection.astro</code>, <code>ProjectCard.astro</code>, etc.</td
-              >
-              <td class="border border-black px-4 py-2">Re-usable chunks per section</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">8. PDFs & Static Assets</td>
-              <td class="border border-black px-4 py-2"
-                >Placed all PDFs in <code>public/projects/</code> and linked in cards</td
-              >
-              <td class="border border-black px-4 py-2">Downloads open in new tab</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">9. Git & GitHub</td>
-              <td class="border border-black px-4 py-2"
-                >Commits, <code>.gitignore</code>, pushed to GitHub</td
-              >
-              <td class="border border-black px-4 py-2">Source fully tracked & visible</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">10. Netlify Deployment</td>
-              <td class="border border-black px-4 py-2"
-                >Connected repo → Netlify → auto-deploy from <code>main</code></td
-              >
-              <td class="border border-black px-4 py-2">Live site with deploy preview</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">11. Post-Launch Polish</td>
-              <td class="border border-black px-4 py-2"
-                >Added <code>_redirects</code> file, final <code>astro.config.mjs</code> cleanup</td
-              >
-              <td class="border border-black px-4 py-2">Production-ready polish</td>
-            </tr>
-          </tbody>
+              >postcss.config.cjs</tr
+            >, global styles in <code>src/styles/global.css</code></tbody
+          >
+          <td class="border border-black px-4 py-2">Tailwind utilities available project-wide</td>
         </table>
+        <tr>
+          <td class="border border-black px-4 py-2">3. React Integration</td>
+          <td class="border border-black px-4 py-2">Install React, <code>@astrojs/react</code></td>
+          <td class="border border-black px-4 py-2">Ready to drop in JSX components</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-4 py-2">4. Netlify Adapter</td>
+          <td class="border border-black px-4 py-2">
+            Install <code>@astrojs/netlify</code>, update config in
+            <a
+              href="/images/astro.config.mjs.svg"
+              target="_blank"
+              class="underline text-blue-400 hover:text-blue-600"
+            >
+              <code>astro.config.mjs</code>
+            </a>, add adapter import
+          </td>
+          >
+          <td class="border border-black px-4 py-2">Auto builds use Netlify-friendly output</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-4 py-2">5. Global Layout</td>
+          <td class="border border-black px-4 py-2"
+            >Created <code>src/layouts/Layout.astro</code> with shared header/footer</td
+          >
+          <td class="border border-black px-4 py-2">Single shared shell for every page</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-4 py-2">6. Pages</td>
+          <td class="border border-black px-4 py-2">Home, About, Projects, Behind the Scenes</td>
+          <td class="border border-black px-4 py-2">Clear, minimal routing</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-4 py-2">7. Components</td>
+          <td class="border border-black px-4 py-2"
+            >Made <code>BackgroundSection.astro</code>, <code>ProjectCard.astro</code>, etc.</td
+          >
+          <td class="border border-black px-4 py-2">Re-usable chunks per section</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-4 py-2">8. PDFs & Static Assets</td>
+          <td class="border border-black px-4 py-2"
+            >Placed all PDFs in <code>public/projects/</code> and linked in cards</td
+          >
+          <td class="border border-black px-4 py-2">Downloads open in new tab</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-4 py-2">9. Git & GitHub</td>
+          <td class="border border-black px-4 py-2"
+            >Commits, <code>.gitignore</code>, pushed to GitHub</td
+          >
+          <td class="border border-black px-4 py-2">Source fully tracked & visible</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-4 py-2">10. Netlify Deployment</td>
+          <td class="border border-black px-4 py-2"
+            >Connected repo → Netlify → auto-deploy from <code>main</code></td
+          >
+          <td class="border border-black px-4 py-2">Live site with deploy preview</td>
+        </tr>
+        <tr>
+          <td class="border border-black px-4 py-2">11. Post-Launch Polish</td>
+          <td class="border border-black px-4 py-2"
+            >Added <code>_redirects</code> file, final <code>astro.config.mjs</code> cleanup</td
+          >
+          <td class="border border-black px-4 py-2">Production-ready polish</td>
+        </tr>
       </section>
-
-      <div class="text-center mt-12">
-        <a
-          href="/"
-          class="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
-        >
-          Back to Home
-        </a>
-      </div>
     </BackgroundSection>
   </main>
+
+  <div class="text-center mt-12">
+    <a
+      href="/"
+      class="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
+    >
+      Back to Home
+    </a>
+  </div>
 </Layout>
