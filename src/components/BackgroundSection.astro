@@ -4,18 +4,14 @@ const {
   backgroundImage,
   opacity = 0.5, // Default semi-transparent overlay
   textOutline = true,
-} = Astro.props;
+} = Astro.props
 ---
 
 <section
   class="relative bg-cover bg-center text-white py-16 px-4"
   style={`background-image: url(${backgroundImage})`}
 >
-  <div
-    class="absolute inset-0 bg-black"
-    style={`opacity: ${opacity};`}
-    aria-hidden="true"
-  ></div>
+  <div class="absolute inset-0 bg-black" style={`opacity: ${opacity};`} aria-hidden="true"></div>
 
   <div class={`relative z-10 max-w-4xl mx-auto ${textOutline ? 'text-outline' : ''}`}>
     <slot />
