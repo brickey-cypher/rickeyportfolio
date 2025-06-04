@@ -1,3 +1,12 @@
 ---
-export const prerender = false
+import { AstroError } from 'astro/errors';
+import BackButton from '../../components/BackButton.astro';
+
+const { slug } = Astro.params;
+const imagePath = `/svgs/${slug}.svg`;
 ---
+<div class="p-4">
+  <BackButton href="/behind-the-scenes" label="Back to Behind the Scenes" />
+
+  <img src={imagePath} alt={`${slug} Preview`} class="w-full border border-gray-300 rounded mt-4" />
+</div>
