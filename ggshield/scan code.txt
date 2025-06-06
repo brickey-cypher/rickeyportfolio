@@ -1,8 +1,0 @@
-BBe235DFa71a29EEcc24cd265CEfB8Def92BFcba1E4DBd4725FE3A94e252cdD56dd0bce api token
-
-
-$env:GITGUARDIAN_API_KEY="BBe235DFa71a29EEcc24cd265CEfB8Def92BFcba1E4DBd4725FE3A94e252cdD56dd0bce"
-
-
-ggshield secret scan repo https://github.com/brickey-cypher/rickeyportfolio.git --all-secrets --with-incident-details --instance https://dashboard.gitguardian.com
-
