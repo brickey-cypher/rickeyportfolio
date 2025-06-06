@@ -19,31 +19,34 @@ import BackgroundSection from '../components/BackgroundSection.astro'
           analysis, and digital defense.
         </p>
 
-        <p class="mt-6 text-md text-gray-200">
-          Explore my
-          <a href="/projects" class="underline text-blue-400 hover:text-blue-600"> projects </a>
-          to see how I’m building my skillset and securing the digital world.
-        </p>
-
-        <div class="mt-8 space-y-4">
+        <div class="mt-10 flex flex-col items-center space-y-4">
           <a
             href="/about"
-            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+            class="w-40 bg-blue-600 text-white px-1 py-2 rounded hover:bg-blue-700 transition text-center"
           >
             About Me
           </a>
 
-          <div>
-            <p class="text-sm text-gray-200 mb-2">Want to know what went into making this site?</p>
-            <a
-              href="/behind-the-scenes"
-              class="inline-block bg-gray-100 text-blue-700 px-4 py-2 rounded hover:bg-white hover:shadow transition"
-            >
-              Go Behind the Scenes
-            </a>
-          </div>
+          <a
+            href="/projects"
+            class="w-52 bg-green-600 text-white px-2 py-2 rounded hover:bg-green-700 transition text-center"
+          >
+            Projects
+          </a>
+
+          <a
+            href="/behind-the-scenes"
+            class="w-64 bg-gray-100 text-blue-700 px-3 py-2 rounded hover:bg-white hover:shadow transition text-center"
+          >
+            Go Behind the Scenes
+          </a>
+
+          <p class="text-sm text-gray-200 -mt-2">
+            Want to know what went into making this site?
+          </p>
         </div>
       </section>
     </BackgroundSection>
   </main>
 </Layout>
+

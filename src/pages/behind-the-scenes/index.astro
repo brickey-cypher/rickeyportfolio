@@ -1,6 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import BackgroundSection from '../../components/BackgroundSection.astro'
+import Layout from '../../layouts/Layout.astro';
+import BackgroundSection from '../../components/BackgroundSection.astro';
 ---
 
 <Layout title="Behind the Scenes | Brianna Marie Rickey">
@@ -27,213 +27,283 @@ import BackgroundSection from '../../components/BackgroundSection.astro'
       </p>
 
       <section class="overflow-x-auto mt-12">
-        <table class="min-w-full border border-black text-left text-sm text-white">
-          <thead class="bg-black text-white font-semibold">
+        <table class="min-w-full border border-gray-700 text-left text-sm text-white">
+          <thead class="bg-gray-900 font-semibold">
             <tr>
-              <th class="border border-black px-4 py-2">Phase</th>
-              <th class="border border-black px-4 py-2">Key Actions & Decisions</th>
-              <th class="border border-black px-4 py-2">Outcome</th>
+              <th class="border border-gray-700 px-4 py-2">Phase</th>
+              <th class="border border-gray-700 px-4 py-2">Key Actions & Decisions</th>
+              <th class="border border-gray-700 px-4 py-2">Outcome</th>
             </tr>
           </thead>
-          <tbody class="bg-black">
-            <tr>
-              <td class="border border-black px-4 py-2">1. Project Bootstrapping</td>
-              <td class="border border-black px-4 py-2">
-                <a
-                  href="/svgs/astro.config.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
-                >
-                  <img src="/svgs/astro.config.svg" alt="astro.config" class="inline w-5 h-5" />
-                  <code>astro.config.mjs</code>
-                </a>
-              </td>
-              <td class="border border-black px-4 py-2">Clear Astro skeleton structure</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">2. Core Styling</td>
-              <td class="border border-black px-4 py-2">
-                <a
-                  href="/svgs/tailwind.config.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
-                >
-                  <img
-                    src="/svgs/tailwind.config.svg"
-                    alt="tailwind.config"
-                    class="inline w-5 h-5"
-                  />
-                  <code>tailwind.config.cjs</code>
-                </a>
-                <a
-                  href="/svgs/postcss.config.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1 ml-2"
-                >
-                  <img src="/svgs/postcss.config.svg" alt="postcss.config" class="inline w-5 h-5" />
-                  <code>postcss.config.cjs</code>
-                </a>
-              </td>
-              <td class="border border-black px-4 py-2"
-                >Tailwind utilities available project-wide</td
-              >
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">3. React Integration</td>
-              <td class="border border-black px-4 py-2">
-                Install <code>@astrojs/react</code>
-              </td>
-              <td class="border border-black px-4 py-2">Ready to drop in JSX components</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">4. Netlify Adapter</td>
-              <td class="border border-black px-4 py-2">
-                <a
-                  href="/svgs/netlify.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
-                >
-                  <img src="/svgs/netlify.svg" alt="netlify" class="inline w-5 h-5" />
-                  <code>netlify.toml</code>
-                </a>
-              </td>
-              <td class="border border-black px-4 py-2">Auto builds use Netlify-friendly output</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">5. Global Layout</td>
-              <td class="border border-black px-4 py-2">
-                <a
-                  href="/svgs/Layout.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
-                >
-                  <img src="/svgs/Layout.svg" alt="Layout" class="inline w-5 h-5" />
-                  <code>Layout.astro</code>
-                </a>
-              </td>
-              <td class="border border-black px-4 py-2"></td>
-            </tr>
-            <!-- Add other phases as needed -->
-          </tbody>
-        </table>
-      </section>
-    </BackgroundSection>
-  </main>
-</Layout>
-
-can you adjust index.astro to account for these changes please?? index.astro content --- import
-Layout from '../../layouts/Layout.astro' import BackgroundSection from
-'../../components/BackgroundSection.astro' ---
-
-<Layout title="Behind the Scenes | Brianna Marie Rickey">
-  <main>
-    <BackgroundSection
-      backgroundImage="/backgrounds/bts-background.jpg"
-      opacity={0.6}
-      textOutline={true}
+          <tbody class="bg-gray-800">
+      <tr>
+  <td class="border border-gray-700 px-4 py-2">1. Project Bootstrapping</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Installed and configured&nbsp;
+    <a
+      href="/svgs/astro.config.svg"
+      target="_blank"
+      class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
+      rel="noopener noreferrer"
     >
-      <h1 class="text-4xl font-bold mb-6">Behind the Scenes</h1>
+      <img src="/svgs/astro.config.svg" alt="astro.config" class="inline w-5 h-5" />
+      <code>astro.config.mjs</code>
+    </a>
+  </td>
+  <td class="border border-gray-700 px-4 py-2">Clear Astro skeleton structure</td>
+</tr>
 
-      <p class="text-lg mb-6 max-w-2xl mx-auto">
-        This portfolio wasn’t just built—it was carefully crafted with intention, iteration, and a
-        whole lot of trial and error.
-      </p>
+<tr>
+  <td class="border border-gray-700 px-4 py-2">2. Core Styling</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Configured&nbsp;
+    <a
+      href="/svgs/tailwind.config.svg"
+      target="_blank"
+      class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
+      rel="noopener noreferrer"
+    >
+      <img src="/svgs/tailwind.config.svg" alt="tailwind.config" class="inline w-5 h-5" />
+      <code>tailwind.config.cjs</code>
+    </a>
+    &nbsp;and&nbsp;
+    <a
+      href="/svgs/postcss.config.svg"
+      target="_blank"
+      class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1 ml-2"
+      rel="noopener noreferrer"
+    >
+      <img src="/svgs/postcss.config.svg" alt="postcss.config" class="inline w-5 h-5" />
+      <code>postcss.config.cjs</code>
+    </a>
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Tailwind utilities available project-wide
+  </td>
+</tr>
 
-      <h2 class="text-2xl font-semibold mb-4 mt-10">Project Description</h2>
-      <p class="max-w-3xl mx-auto mb-8">
-        This is a fully responsive cybersecurity portfolio website built in VSCode using Astro,
-        React, and Tailwind CSS. It showcases my skills and projects through an intuitive design
-        with dynamic views and easy navigation optimized for both mobile and desktop. The site
-        focuses on clean, maintainable code, leveraging AI tools to speed up development while
-        ensuring I deeply understand and control every part of the project.
-      </p>
+<tr>
+  <td class="border border-gray-700 px-4 py-2">3. React Integration</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Installed <code>@astrojs/react</code> and updated integration config
+  </td>
+  <td class="border border-gray-700 px-4 py-2">Ready to drop in JSX components</td>
+</tr>
 
-      <section class="overflow-x-auto mt-12">
-        <table class="min-w-full border border-black text-left text-sm text-white">
-          <thead class="bg-black text-white font-semibold">
-            <tr>
-              <th class="border border-black px-4 py-2">Phase</th>
-              <th class="border border-black px-4 py-2">Key Actions & Decisions</th>
-              <th class="border border-black px-4 py-2">Outcome</th>
-            </tr>
-          </thead>
-          <tbody class="bg-black">
-            <tr>
-              <td class="border border-black px-4 py-2">1. Project Bootstrapping</td>
-              <td class="border border-black px-4 py-2">
-                Create Astro project, minimal cleanup, remove <code>README.md</code>, init Git
-              </td>
-              <td class="border border-black px-4 py-2">Clear Astro skeleton structure</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">2. Core Styling</td>
-              <td class="border border-black px-4 py-2">
-                Install Tailwind, update
-                <a
-                  href="/svgs/tailwind.config.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600"
-                >
-                  <code>tailwind.config.cjs</code>
-                </a>,
-                <a
-                  href="/svgs/postcss.config.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600"
-                >
-                  <code>postcss.config.js</code>
-                </a>, global styles in
-                <a
-                  href="/svgs/global.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600"
-                >
-                  <code>src/styles/global.css</code>
-                </a>
-              </td>
-              <td class="border border-black px-4 py-2"
-                >Tailwind utilities available project-wide</td
-              >
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">3. React Integration</td>
-              <td class="border border-black px-4 py-2">Install <code>@astrojs/react</code></td>
-              <td class="border border-black px-4 py-2">Ready to drop in JSX components</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">4. Netlify Adapter</td>
-              <td class="border border-black px-4 py-2">
-                Install <code>@astrojs/netlify</code>, update
-                <a
-                  href="/svgs/astro.config.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600"
-                >
-                  <code>astro.config.mjs</code>
-                </a>
-              </td>
-              <td class="border border-black px-4 py-2">Auto builds use Netlify-friendly output</td>
-            </tr>
-            <tr>
-              <td class="border border-black px-4 py-2">5. Global Layout</td>
-              <td class="border border-black px-4 py-2">
-                Created
-                <a
-                  href="/svgs/Layout.svg"
-                  target="_blank"
-                  class="underline text-blue-400 hover:text-blue-600"
-                >
-                  <code>Layout.astro</code>
-                </a>
-                with shared header/footer
-              </td>
-              <td class="border border-black px-4 py-2">Consistent UI framework</td>
-            </tr>
-            <!-- Add other phases as needed -->
+<tr>
+  <td class="border border-gray-700 px-4 py-2">4. Netlify Adapter</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Added&nbsp;
+    <a
+      href="/svgs/netlify.svg"
+      target="_blank"
+      class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
+      rel="noopener noreferrer"
+    >
+      <img src="/svgs/netlify.svg" alt="netlify" class="inline w-5 h-5" />
+      <code>netlify.toml</code>
+    </a>
+    &nbsp;for deployment
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Auto builds use Netlify-friendly output
+  </td>
+</tr>
+
+<tr>
+  <td class="border border-gray-700 px-4 py-2">5. Global Layout</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Created&nbsp;
+    <a
+      href="/svgs/Layout.svg"
+      target="_blank"
+      class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
+      rel="noopener noreferrer"
+    >
+      <img src="/svgs/Layout.svg" alt="Layout" class="inline w-5 h-5" />
+      <code>Layout.astro</code>
+    </a>
+    &nbsp;with head tags and slot structure
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Consistent page wrapper and global styles
+  </td>
+</tr>
+
+  <td class="border border-gray-700 px-4 py-2">9. Base Layout Structure</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Created global layout wrapper, imported shared head metadata and slot content
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Consistent visual and semantic foundation for all pages
+  </td>
+</tr>
+
+<tr>
+  <td class="border border-gray-700 px-4 py-2">10. Background Section Component</td>
+  <td class="border border-gray-700 px-4 py-2">
+    <a
+      href="/svgs/BackgroundSection.svg"
+      target="_blank"
+      class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
+      rel="noopener noreferrer"
+    >
+      <img src="/svgs/BackgroundSection.svg" alt="BackgroundSection" class="inline w-5 h-5" />
+      <code>BackgroundSection.astro</code>
+    </a>
+    <span class="ml-2">Reusable component with background, opacity, and outline options</span>
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Flexible hero-style sections used across multiple pages
+  </td>
+</tr>
+<tr>
+  <td class="border border-gray-700 px-4 py-2">11. Folder & File Cleanup</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Removed starter boilerplate files (e.g., default Astro pages, unused public assets)
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Reduced clutter, kept the project focused on real content
+  </td>
+</tr>
+
+<tr>
+  <td class="border border-gray-700 px-4 py-2">12. .gitignore Setup</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Verified standard ignores (e.g., <code>node_modules</code>, <code>.astro</code>, build output)
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Clean repo with no unnecessary files tracked by Git
+  </td>
+</tr>
+
+<tr>
+  <td class="border border-gray-700 px-4 py-2">13. First Commit</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Initialized Git repo locally, wrote commit message describing baseline stack and layout
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Clean snapshot of initial working state saved to version control
+  </td>
+</tr>
+
+<tr>
+  <td class="border border-gray-700 px-4 py-2">14. GitHub Push</td>
+  <td class="border border-gray-700 px-4 py-2">
+    Created remote repo, added origin, pushed to main branch
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Live repo ready for collaboration, versioning, and backup
+  </td>
+</tr>
+            <!-- Add other phases here as needed -->
           </tbody>
         </table>
       </section>
-      
+
+<h2 class="text-2xl font-semibold mb-4">Biggest Debug Moments</h2>
+<section class="overflow-x-auto">
+  <table class="min-w-full border border-rose-600 text-left text-sm text-white">
+    <thead class="bg-rose-800 font-semibold">
+      <tr>
+        <th class="border border-rose-600 px-4 py-2">Bug / Issue</th>
+        <th class="border border-rose-600 px-4 py-2">What Happened</th>
+        <th class="border border-rose-600 px-4 py-2">How I Fixed It</th>
+      </tr>
+    </thead>
+    <tbody class="bg-rose-700">
+      <tr>
+        <td class="border border-rose-600 px-4 py-2">Tailwind v4 / Astro peer conflict</td>
+        <td class="border border-rose-600 px-4 py-2">
+          Astro’s Tailwind integration expected v3; my project pulled v4, breaking the build.
+        </td>
+        <td class="border border-rose-600 px-4 py-2">
+          Downgraded to <code>tailwindcss@3.4.x</code>, removed <code>@tailwindcss/vite</code>, re‑installed packages.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300 italic text-center">What I Learned</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300">
+          Peer dependency mismatches can silently break your project. Always check the required versions in plugin docs before upgrading major frameworks.
+        </td>
+      </tr>
+
+      <tr>
+        <td class="border border-rose-600 px-4 py-2">“Alpine JS module specifier” error</td>
+        <td class="border border-rose-600 px-4 py-2">
+          Browser couldn’t resolve a bare <code>alpinejs</code> import.
+        </td>
+        <td class="border border-rose-600 px-4 py-2">
+          Verified I wasn’t using Alpine, then removed it from <code>package.json</code> (or installed it if needed). Error vanished.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300 italic text-center">What I Learned</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300">
+          Leftover or unused dependencies can still trigger runtime errors—clean out what you're not using to reduce noise and avoid confusion.
+        </td>
+      </tr>
+
+      <tr>
+        <td class="border border-rose-600 px-4 py-2">React grid-toggle not hydrating</td>
+        <td class="border border-rose-600 px-4 py-2">
+          “Grid View” button rendered but clicks did nothing.
+        </td>
+        <td class="border border-rose-600 px-4 py-2">
+          Added <code>client:load</code> to hydrate component, injected console logs, confirmed <code>useState</code> toggled layout classes.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300 italic text-center">What I Learned</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300">
+          Astro requires explicit hydration flags for interactivity—no hydration, no reactivity. Also: console logs are still king for fast debugging.
+        </td>
+      </tr>
+
+      <tr>
+        <td class="border border-rose-600 px-4 py-2">Overlapping cards on mobile</td>
+        <td class="border border-rose-600 px-4 py-2">
+          Project cards spilled outside grid at small breakpoints.
+        </td>
+        <td class="border border-rose-600 px-4 py-2">
+          Switched to responsive Tailwind grid utilities (<code>grid-cols-1 sm:grid-cols-2</code>) and added <code>gap‑4</code>.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300 italic text-center">What I Learned</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300">
+          Tailwind’s breakpoint system is powerful, but layout bugs can creep in if you forget to test on smaller screens. Build mobile-first to avoid surprises.
+        </td>
+      </tr>
+
+      <tr>
+        <td class="border border-rose-600 px-4 py-2">Secret scan false positives</td>
+        <td class="border border-rose-600 px-4 py-2">
+          <code>ggshield secret scan</code> failed until repo URL ended in <code>.git</code>.
+        </td>
+        <td class="border border-rose-600 px-4 py-2">
+          Documented the “add <code>.git</code>” requirement in my workflow README.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300 italic text-center">What I Learned</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300">
+          Some tools depend on exact URL formatting. When a CLI tool misbehaves, don’t just read the error—check the docs for input expectations.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
     </BackgroundSection>
   </main>
 </Layout>
