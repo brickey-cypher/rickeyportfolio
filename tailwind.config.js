@@ -1,8 +1,11 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,ts,tsx}'],
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        'mobile-light': '#f4f4f4',
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 }

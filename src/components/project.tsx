@@ -9,7 +9,7 @@ export default function Projects({ projects }: ProjectsProps) {
   const [grid, setGrid] = useState(false);
 
   return (
- <section className="my-12 px-4 sm:px-6">
+ <section className="my-12 px-4 sm:px-6 bg-mobilebg sm:bg-desktopbg">
   <a href="/" className="inline-block text-sm text-blue-600 hover:underline mb-4">
     ← Back to Home
   </a>

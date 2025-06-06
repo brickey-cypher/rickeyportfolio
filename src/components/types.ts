@@ -3,3 +3,7 @@ export interface Project {
   description: string;
   pdf: string;
 }
+
+export interface ProjectsProps {
+  projects: Project[];
+}
