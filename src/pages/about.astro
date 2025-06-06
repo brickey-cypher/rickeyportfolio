@@ -3,6 +3,15 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="About | Brianna Marie Rickey">
+<div class="mb-4 flex items-center">
+      <a
+        href="/"
+        class="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition text-sm"
+        aria-label="Back to Home"
+      >
+        ← Back to Home
+      </a>
+    </div>
   <main class="max-w-3xl mx-auto py-12 px-6">
     <section class="text-center bg-black bg-opacity-20 rounded-lg p-8">
       <h1 class="text-4xl font-bold mb-6 text-white">About Me</h1>
@@ -25,13 +34,6 @@ import Layout from '../layouts/Layout.astro'
         </p>
       </div>
     </section>
-    <div class="mt-8 text-center">
-      <a
-        href="/"
-        class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900 transition"
-      >
-        Back to Home
-      </a>
-    </div>
+
   </main>
 </Layout>

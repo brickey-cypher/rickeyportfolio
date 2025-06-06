@@ -9,10 +9,10 @@ export default function Projects({ projects }: ProjectsProps) {
   const [grid, setGrid] = useState(false);
 
   return (
-    <section className="my-12 px-4 sm:px-6">
-      <a href="/" className="inline-block text-sm text-blue-600 hover:underline mb-4">
-        ← Back to Home
-      </a>
+ <section className="my-12 px-4 sm:px-6">
+  <a href="/" className="inline-block text-sm text-blue-600 hover:underline mb-4">
+    ← Back to Home
+  </a>
 
       <h1 className="text-3xl font-bold text-center mb-6 text-gray-100">Projects</h1>
 
