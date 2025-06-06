@@ -444,3 +444,4 @@ yarn-error.log*
 # Optional Astro cache folders (if used)
 .astro/
 
+ggshield/
