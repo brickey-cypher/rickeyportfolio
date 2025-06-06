@@ -1,4 +1,0 @@
-root: C:\portfolio-project\rickeyportfolio\ggshield\nvm-noinstall 
-path: C:\Program Files\nodejs 
-arch: 64 
-proxy: none
