@@ -17,20 +17,67 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     class="text-black min-h-screen antialiased bg-fixed bg-cover bg-center"
     style="background-image: url('/backgrounds/gradient-hexagonal-background.jpg');"
   >
+    <!-- Dim background image layer -->
     <div
       class="absolute inset-0 bg-[url('/backgrounds/gradient-hexagonal-background.jpg')] opacity-10 bg-cover bg-center z-0 pointer-events-none"
-    >
-    </div>
+    ></div>
 
-    <!-- Content sits above background -->
-    <div class="relative z-10">
+    <!-- Matrix rain overlay canvas -->
+    <canvas id="matrix-overlay" class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-20"></canvas>
+
+    <!-- Main content -->
+    <div class="relative z-20">
       <slot />
     </div>
 
+    <!-- Alpine.js -->
     <script type="module">
       import Alpine from 'alpinejs'
       window.Alpine = Alpine
       Alpine.start()
     </script>
+
+    <!-- Matrix rain animation -->
+    <script is:inline>
+      window.onload = () => {
+        const canvas = document.getElementById("matrix-overlay");
+        const ctx = canvas.getContext("2d");
+
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+        const fontSize = 16;
+        const columns = Math.floor(window.innerWidth / fontSize);
+        const drops = new Array(columns).fill(1);
+
+        function draw() {
+          ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#00f6ff"; // bright blue
+          ctx.font = fontSize + "px monospace";
+
+          drops.forEach((y, x) => {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, x * fontSize, y * fontSize);
+
+            if (y * fontSize > canvas.height && Math.random() > 0.975) {
+              drops[x] = 0;
+            }
+            drops[x]++;
+          });
+        }
+
+        setInterval(draw, 35);
+      };
+    </script>
   </body>
 </html>
+
+
