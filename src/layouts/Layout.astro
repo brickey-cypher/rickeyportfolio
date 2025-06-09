@@ -13,71 +13,79 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <title>{title}</title>
   </head>
 
-  <body
-    class="text-black min-h-screen antialiased bg-fixed bg-cover bg-center"
-    style="background-image: url('/backgrounds/gradient-hexagonal-background.jpg');"
-  >
-    <!-- Dim background image layer -->
-    <div
-      class="absolute inset-0 bg-[url('/backgrounds/gradient-hexagonal-background.jpg')] opacity-10 bg-cover bg-center z-0 pointer-events-none"
-    ></div>
+<body
+  class="bg-zinc-900 text-white min-h-screen antialiased relative"
+>
+  <!-- Instant fallback background color -->
+  <style>
+    body {
+      background-color: #0f0f0f; /* solid dark base for instant paint */
+    }
+  </style>
 
-    <!-- Matrix rain overlay canvas -->
-    <canvas id="matrix-overlay" class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-20"></canvas>
+  <!-- Dim background image layer (loads after paint) -->
+ <div class="absolute inset-0 bg-hex-pattern opacity-30 z-0 pointer-events-none" aria-hidden="true"></div>
 
-    <!-- Main content -->
-    <div class="relative z-20">
-      <slot />
-    </div>
 
-    <!-- Alpine.js -->
-    <script type="module">
-      import Alpine from 'alpinejs'
-      window.Alpine = Alpine
-      Alpine.start()
-    </script>
+  <!-- Matrix rain overlay canvas -->
+  <canvas
+    id="matrix-overlay"
+    class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-20"
+  ></canvas>
 
-    <!-- Matrix rain animation -->
-    <script is:inline>
-      window.onload = () => {
-        const canvas = document.getElementById("matrix-overlay");
-        const ctx = canvas.getContext("2d");
+  <!-- Main content -->
+  <div class="relative z-20">
+    <slot />
+  </div>
 
-        function resizeCanvas() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        }
+  <!-- Alpine.js -->
+  <script type="module">
+    import Alpine from 'alpinejs'
+    window.Alpine = Alpine
+    Alpine.start()
+  </script>
 
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
+  <!-- Matrix rain animation -->
+  <script is:inline>
+    window.onload = () => {
+      const canvas = document.getElementById("matrix-overlay");
+      const ctx = canvas.getContext("2d");
 
-        const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-        const fontSize = 16;
-        const columns = Math.floor(window.innerWidth / fontSize);
-        const drops = new Array(columns).fill(1);
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
 
-        function draw() {
-          ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
 
-          ctx.fillStyle = "#00f6ff"; // bright blue
-          ctx.font = fontSize + "px monospace";
+      const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+      const fontSize = 16;
+      const columns = Math.floor(window.innerWidth / fontSize);
+      const drops = new Array(columns).fill(1);
 
-          drops.forEach((y, x) => {
-            const text = letters[Math.floor(Math.random() * letters.length)];
-            ctx.fillText(text, x * fontSize, y * fontSize);
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            if (y * fontSize > canvas.height && Math.random() > 0.975) {
-              drops[x] = 0;
-            }
-            drops[x]++;
-          });
-        }
+        ctx.fillStyle = "#00f6ff"; // bright blue
+        ctx.font = fontSize + "px monospace";
 
-        setInterval(draw, 35);
-      };
-    </script>
-  </body>
+        drops.forEach((y, x) => {
+          const text = letters[Math.floor(Math.random() * letters.length)];
+          ctx.fillText(text, x * fontSize, y * fontSize);
+
+          if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[x] = 0;
+          }
+          drops[x]++;
+        });
+      }
+
+      setInterval(draw, 35);
+    };
+  </script>
+</body>
 </html>
 
 
