@@ -1,48 +1,110 @@
-# Astro Starter Kit: Basics
+# Brianna Marie Rickey | Cybersecurity Portfolio
 
-```sh
-npm create astro@latest -- --template basics
+Welcome to my personal cybersecurity portfolio, built to showcase my hands-on projects, skills, and continuous learning in the digital security space. This site was developed using [Astro](https://astro.build/), [React](https://reactjs.org/), and [Tailwind CSS](https://tailwindcss.com/), and deployed with [Netlify](https://www.netlify.com/).
+
+---
+
+## 🔍 Overview
+
+This is a responsive, lightweight portfolio site that includes:
+- A collection of cybersecurity-related projects
+- Custom components built with React
+- Modern styling using Tailwind CSS
+- Background animation (Matrix rain effect)
+- Smooth entry animations powered by Framer Motion
+- A hex-pattern background image with clean fade-in
+- Fully deployed via Netlify CI/CD
+
+---
+
+## 🚀 Technologies Used
+
+- **[Astro](https://astro.build/)** – Static site generator with component islands
+- **[React](https://reactjs.org/)** – Interactive components
+- **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first styling
+- **[Framer Motion](https://www.framer.com/motion/)** – Page and element animation
+- **[Netlify](https://www.netlify.com/)** – Live deployment and hosting
+- **[Alpine.js](https://alpinejs.dev/)** – Lightweight reactivity (Matrix canvas control)
+
+---
+
+## 📂 Folder Structure
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
+root/
+│
+├── public/                         # Static assets (images, PDFs, etc.)
+│   └── backgrounds/                # Background image(s)
+│
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/                 # React/TSX components (e.g., ProjectCard, FadeInSection)
+│   ├── layouts/                    # Page layout files (e.g., Layout.astro)
+│   ├── pages/                      # Astro pages (*.astro)
+│   └── styles/                     # Tailwind and global CSS
+│
+├── tailwind.config.js             # Tailwind configuration
+├── astro.config.mjs               # Astro project config
+├── package.json                   # Project dependencies and scripts
+└── README.md                      # This file
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## 🛠 Local Development
 
-All commands are run from the root of the project, from a terminal:
+### Prerequisites:
+- [Node.js](https://nodejs.org/) v18+
+- [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Installation:
 
-## 👀 Want to learn more?
+```bash
+# Clone the repository
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open [http://localhost:4321](http://localhost:4321) to view the site in your browser.
+
+---
+
+## 🌐 Deployment
+
+This project is deployed via [Netlify](https://www.netlify.com/).
+
+### To deploy:
+- Push to your connected GitHub branch.
+- Netlify auto-builds and deploys.
+- Background assets are served from the `/public` directory.
+- Be sure that image paths are root-relative (e.g., `/backgrounds/image.jpg`).
+
+---
+
+## ✨ Features
+
+- **Matrix Rain Canvas**: JavaScript-driven animation layered with transparency
+- **Fade-In Components**: Elements animate smoothly into view using Framer Motion
+- **Dark-mode optimized**: Visual consistency regardless of system theme
+- **Custom responsive layout**: Tailwind-based design for desktop and mobile
+
+---
+
+## 🧠 Author
+
+**Brianna Marie Rickey**
+Aspiring Cybersecurity Analyst
+Empowering others to find their place—and their power—in the digital world.
+
+---
+
+## 📜 License
+
+This project is open-source for educational and personal portfolio use.
+Feel free to fork or adapt with proper credit.
+
