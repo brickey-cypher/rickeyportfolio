@@ -1,0 +1,67 @@
+---
+import CustomButton from '../components/CustomButton';
+---
+
+<main class="flex flex-col items-center justify-center min-h-screen bg-neutral-900 text-white">
+    <!-- Debugging: Display SVG source -->
+    <p id="svgSource" class="text-white">SVG Source: Loading...</p>
+
+    <!-- SVG Viewer -->
+    <div id="svgViewer" class="w-80 h-80"></div>
+
+    <CustomButton
+      id="backButton"
+      className="absolute top-4 left-4 bg-rose-500 text-white px-4 py-2 rounded-md hover:bg-rose-600"
+    >
+      Back
+    </CustomButton>
+</main>
+
+<!-- Client-Side Script to Extract Query Parameter -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const svgSrc = urlParams.get("src");
+
+    console.log("SVG Source:", svgSrc);
+
+    const svgSourceEl = document.getElementById("svgSource");
+    const svgViewerEl = document.getElementById("svgViewer");
+    const backButtonEl = document.getElementById("backButton");
+
+    if (svgSrc && svgViewerEl && svgSourceEl) {
+      fetch(svgSrc)
+        .then(response => response.text())
+        .then(svgContent => {
+          svgViewerEl.innerHTML = svgContent;
+          svgSourceEl.textContent = "SVG Source: " + svgSrc;
+        })
+        .catch(() => {
+          if (svgSourceEl) {
+            svgSourceEl.textContent = "Error: SVG file not found.";
+          }
+          if (svgViewerEl) {
+            svgViewerEl.style.display = "none";
+          }
+        });
+    } else {
+      if (svgSourceEl) {
+        svgSourceEl.textContent = "Error: SVG file not found.";
+      }
+      if (svgViewerEl) {
+        svgViewerEl.style.display = "none";
+      }
+    }
+
+    // Ensure back button works correctly
+    if (backButtonEl) {
+      backButtonEl.addEventListener("click", () => {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = "/behind-the-scenes"; // Fallback redirect
+        }
+      });
+    }
+  });
+</script>
