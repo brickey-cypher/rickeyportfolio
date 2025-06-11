@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import ProjectsComponent from '../components/project.tsx'
-import CustomButton from "../components/CustomButton"
-import FadeInSection from '../components/FadeInSection.tsx';
-import PdfViewer from './pdf-viewer.astro';
+import CustomButton from '../components/CustomButton'
+import FadeInSection from '../components/FadeInSection.tsx'
+import PdfViewer from './pdf-viewer.astro'
 const projects = [
   {
     title: 'Security Incident & Assessment Report',
@@ -20,7 +20,7 @@ const projects = [
   {
     title: 'Scope, Goals, & Risk Assessment Report',
     description:
-      "Conducted a comprehensive security audit of Botium Toys, reviewing assets, internal systems, and compliance practices.",
+      'Conducted a comprehensive security audit of Botium Toys, reviewing assets, internal systems, and compliance practices.',
     pdf: '/pdf-viewer?src=/projects/cybersecurity-incident-report.pdf',
   },
   {
@@ -65,10 +65,9 @@ const projects = [
       'Python script that auto-updates an IP allow-list by removing addresses found in a deny-list.',
     pdf: '/pdf-viewer?src=/projects/algorithm-file-updates-python.pdf',
   },
-];
-
+]
 ---
 
 <Layout title="Projects | Brianna Rickey">
-   <ProjectsComponent client:visible projects={projects} />
+  <ProjectsComponent client:visible projects={projects} />
 </Layout>

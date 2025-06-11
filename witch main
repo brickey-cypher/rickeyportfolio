@@ -1,0 +1,113 @@
+[33m38d3725[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m mobile fix cont.
+[33m8f59918[m mobile project fix cont
+[33m8c21994[m fixed mobile project rendering
+[33m68a6c12[m moved svg links into a space for accessible back button
+[33mdf76caf[m placed pdf files in a space with accessible back button
+[33mdcfe4e0[m added fade in section for polished look
+[33m2285dce[m changed button hover color
+[33mdb5fbe7[m adjusted button color hp
+[33mf7152c3[m updated README, outlining actual project
+[33m0d1fb5c[m adjusted for render delay on startup
+[33mf1c45fa[m added matrix rain to all pages with additional entry in BTS table
+[33m1d38f2f[m Centered title on BTS page
+[33mf9fcce4[m Remove sensitive folder and clean history
+[33mcbfc3db[m Add ggshield to .gitignore
+[33m251a84f[m adjusted color on mobile
+[33m103a149[m uniform placement of back to home buttons
+[33m9b583b6[m fixed back to home button on bts
+[33m6d8503a[m ?
+[33md0f5be6[m added back to home button on bts
+[33m1c3dc8f[m updated bts content and index buttons
+[33m3dd7941[m Merge branch 'main' of C:\portfolio-project\repo-backup
+[33m7dd4da2[m Apply cleaned commit history and project changes
+[33m3beff29[m Remove build and output directories from version control
+[33m2b8eede[m Revert "Remove .netlify directory and ignore it"
+[33m2fb8480[m svg link cont
+[33mf2f7e20[m hopefully final debug for svg
+[33m25ef8e2[m still debugging 404
+[33mf33277b[m finally discovered path error
+[33m30bff61[m fix 404 cont2
+[33mf4127d3[m fix 404 error cont
+[33md109bd9[m 404 error fix
+[33m15f226a[m fixed build error
+[33mba301cf[m adding back button to svg links cont
+[33m2a9a611[m adding back button to svg links
+[33m31c8d6c[m Remove .netlify directory and ignore it
+[33m34f7149[m fix stubborn file name
+[33m7ce792d[m cont3
+[33m9490448[m cont
+[33ma769ac0[m cont file link fix
+[33m6167f53[m fix file name
+[33mc7c9f76[m fix background image
+[33mdc113a2[m continuation of build error fix
+[33m1bcc978[m fixed file path build error
+[33m799fb6e[m changed svg file names for easier referencing
+[33m63f7d05[m imbed link to code in file names cont5
+[33m2df4033[m imbed link to code in file names cont4
+[33m69e0d34[m imbed link to code in file names cont3
+[33mdbd8062[m imbed link to code in file names cont2
+[33mf10d16a[m imbed link to code in file names cont
+[33mae4c029[m imbed link to code in file names
+[33m55c630e[m fixed scroll view projects page
+[33mb373dde[m added build diary to BTS cont2
+[33m0343d78[m added build diary to BTS cont
+[33m34cacc1[m added build diary to BTS
+[33me44c8b9[m working on BTS cont.
+[33m4363495[m working on BTS
+[33md1ad764[m added behind the scenes page with link on hp cont.
+[33me6be497[m added behind the scenes page with link on hp
+[33m6a78446[m fixed back to home on project page
+[33mb1251a3[m add button for mobile users
+[33m2e26a0b[m add contrast to title projects
+[33m7048339[m working on toggle button cont.6
+[33m7b15bb7[m working on toggle button cont.5
+[33mf26d909[m working on toggle button cont.4
+[33mcb1fb3e[m working on toggle button cont.3
+[33maf8ab8e[m working on toggle button cont.2
+[33m4c3535f[m working on toggle button cont.
+[33m09389a0[m working on toggle button
+[33m32f5ca3[m hopefully solved local host conflict
+[33m50b3e3d[m fixed build error cont2
+[33m2dfd879[m fixed build error cont.
+[33mcb50ef0[m fixed build error
+[33mc811bbd[m fixed several errors
+[33md6a17e7[m fixed build error
+[33m76d7c2b[m added mobilefriendly toggle button to projects
+[33me5325a0[m adjusting color cont.
+[33m1168d0d[m fix color on mobile
+[33mbdbf45a[m changed text color for better contrast
+[33mda7bdff[m added transparent layer to background
+[33maf8fb02[m fixed bts position2
+[33m9c4915f[m fixed bts position
+[33m1beada1[m Added behind the scenes to home page
+[33m69073a9[m Added about me button to home page
+[33m950a855[m Add back to home button on additional pages
+[33m8d59911[m dim background around content
+[33m014ef12[m attempt at debug background
+[33meb546fc[m debug background attempt
+[33mce8926b[m change background file type
+[33m5d8d901[m Test Idea
+[33ma726192[m Add SVG background file to all pages
+[33mbc726aa[m Customize background all pages
+[33m2c21106[m Customize background
+[33m746478c[m Fix pdf file name
+[33mbde0ab5[m Add additional projects
+[33m41307d1[m Fix file name
+[33maea3fd6[m Fix file name to resolve 404
+[33ma31a2d1[m Fix projects page: remove React-style key to resolve type error
+[33m05393ad[m Fix PDF paths to point to /projects/ directory
+[33m441cc26[m Change project PDFs and fix 404 error
+[33ma396252[m Add project PDFs and fix 404 error
+[33mf246dd4[m Fix Tailwind setup and add styling support
+[33m101d9c2[m Fix npm run command
+[33m539d122[m Trigger redeploy
+[33m1e4facc[m Fix BehindTheScenes.astro script injection error
+[33m57ea601[m Add projects.astro page with project cards and links to PDFs
+[33m8232472[m Resolved merge conflicts and completed pull
+[33mb777f4e[m Resolve merge conflicts
+[33m0afef96[m Resolved merge conflicts in .gitignore and README.md
+[33mcae69c8[m Update README.md
+[33me3a9652[m Update .gitignore
+[33mf8b86ef[m Initial commit
+[33m8397e41[m Initial commit
+[33m39dc7cf[m Initial commit from Astro
