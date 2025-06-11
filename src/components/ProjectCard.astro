@@ -1,10 +1,10 @@
 ---
-import FadeInSection from '../components/FadeInSection.tsx'
-
+import FadeInSection from '../components/FadeInSection';
+import CustomButton from '../components/CustomButton';
 export interface Props {
   title: string;
   description: string;
-  pdf: string;  // changed from pdfFile to pdf to match your data
+  pdf: string;
 }
 
 const { title, description, pdf } = Astro.props;
@@ -18,11 +18,15 @@ const { title, description, pdf } = Astro.props;
     <!-- Use the full pdf path directly -->
     <a
       href={pdf}
-      target="_blank"
-      rel="noopener noreferrer"
+      target="_self"
       class="mt-auto inline-block text-sm text-rose-500 hover:underline"
     >
       View Details
     </a>
+
+    <!-- Back Button -->
+    <CustomButton onClick={() => window.history.back()} className="mt-4 bg-rose-500 text-white px-4 py-2 rounded-md hover:bg-rose-600">
+      Back
+    </CustomButton>
   </article>
 </FadeInSection>

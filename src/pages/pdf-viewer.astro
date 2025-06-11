@@ -1,0 +1,52 @@
+---
+import CustomButton from '../components/CustomButton';
+---
+
+<main class="flex flex-col items-center justify-center min-h-screen bg-neutral-900 text-white">
+    <!-- Debugging: Display PDF source -->
+    <p id="pdfSource" class="text-white">PDF Source: Loading...</p>
+
+    <!-- PDF Viewer -->
+    <embed id="pdfViewer" width="80%" height="600px" type="application/pdf" class="shadow-md rounded-lg" />
+
+    <CustomButton id="backButton" className="mt-4 bg-rose-500 text-white px-4 py-2 rounded-md hover:bg-rose-600">
+    Back
+</CustomButton>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pdfSrc = urlParams.get("src");
+
+    console.log("PDF Source:", pdfSrc);
+
+    const pdfSourceEl = document.getElementById("pdfSource");
+    const pdfViewerEl = document.getElementById("pdfViewer");
+    const backButtonEl = document.getElementById("backButton");
+
+    if (pdfSrc && pdfViewerEl && pdfSourceEl) {
+      pdfViewerEl.setAttribute("src", pdfSrc);
+      pdfSourceEl.textContent = "PDF Source: " + pdfSrc;
+    } else {
+      if (pdfSourceEl) {
+        pdfSourceEl.textContent = "Error: PDF file not found.";
+      }
+      if (pdfViewerEl) {
+        pdfViewerEl.style.display = "none"; // Hide viewer if no file is found
+      }
+    }
+
+    // Ensure back button works correctly
+    if (backButtonEl) {
+      backButtonEl.addEventListener("click", () => {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = "/projects"; // Fallback redirect
+        }
+      });
+    }
+  });
+</script>
+
+
