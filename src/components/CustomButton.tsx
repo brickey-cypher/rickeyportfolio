@@ -1,17 +1,19 @@
 import type { ButtonHTMLAttributes } from "react";
-
 import type { ReactNode } from "react";
 
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  className?: string; // Allow className to be passed in
+  onClick?: () => void; // Allow custom click handlers
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ children, ...rest }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({ children, className, onClick, ...rest }) => {
   return (
-    <button {...rest}>
+    <button className={className} onClick={onClick} {...rest}>
       {children}
     </button>
   );
 };
 
 export default CustomButton;
+
