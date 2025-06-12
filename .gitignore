@@ -409,7 +409,9 @@ FodyWeavers.xsd
 node_modules/
 
 # Build output
-dist/
+dist/*
+!dist/_headers
+
 
 # Netlify build output but keep deploy config
 .netlify/*
