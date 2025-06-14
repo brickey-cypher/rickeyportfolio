@@ -53,7 +53,7 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
     Installed and configured&nbsp;
     <a
       href="/svg-viewer?src=/svgs/astro.config.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
       rel="noopener noreferrer"
     >
@@ -70,7 +70,7 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
     Configured&nbsp;
     <a
       href="/svg-viewer?src=/svgs/tailwind.config.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
       rel="noopener noreferrer"
     >
@@ -80,7 +80,7 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
     &nbsp;and&nbsp;
     <a
       href="/svg-viewer?src=/svgs/postcss.config.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1 ml-2"
       rel="noopener noreferrer"
     >
@@ -107,7 +107,7 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
     Added&nbsp;
     <a
       href="/svg-viewer?src=/svgs/netlify.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
       rel="noopener noreferrer"
     >
@@ -127,7 +127,7 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
     Created&nbsp;
     <a
       href="/svg-viewer?src=/svgs/Layout.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
       rel="noopener noreferrer"
     >
@@ -155,7 +155,7 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
   <td class="border border-gray-700 px-4 py-2">
     <a
       href="/svg-viewer?src=/svgs/BackgroundSection.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
       rel="noopener noreferrer"
     >
@@ -211,7 +211,7 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
   <td class="border border-gray-700 px-4 py-2 flex items-center space-x-2">
     <a
       href="/svg-viewer?src=/svgs/behind-the-scenes/matrix-rain.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
       rel="noopener noreferrer"
     >
@@ -227,12 +227,13 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
   </td>
 </tr>
 <tr>
+
   <td class="border border-gray-700 px-4 py-2">16. Media Viewers</td>
   <td class="border border-gray-700 px-4 py-2">
     Built&nbsp;
     <a
       href="/svg-viewer?src=/svgs/svg-viewer.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1"
       rel="noopener noreferrer"
     >
@@ -242,7 +243,7 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
     &nbsp;and&nbsp;
     <a
       href="/svg-viewer?src=/svgs/pdf-viewer.svg"
-      target="_blank"
+      target="_self"
       class="underline text-blue-400 hover:text-blue-600 flex items-center gap-1 ml-2"
       rel="noopener noreferrer"
     >
@@ -253,6 +254,26 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
   </td>
   <td class="border border-gray-700 px-4 py-2">
     Improved user navigation by allowing visual assets and documents to open in focused viewer pages with persistent back navigation to maintain user flow
+  </td>
+</tr>
+<tr>
+  <td class="border border-gray-700 px-4 py-2">
+    Added light mode
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Implemented theme switching logic in
+    <a
+      href="/svg-viewer?src=/svgs/behind-the-scenes/ThemeToggle.svg"
+      target="_self"
+      class="underline text-blue-400 hover:text-blue-600"
+      rel="noopener noreferrer"
+    >
+      ThemeToggle.tsx
+    </a>
+    and synchronized state with <code>localStorage</code> for persistence
+  </td>
+  <td class="border border-gray-700 px-4 py-2">
+    Enhanced user experience by enabling light mode alongside dark mode, providing users control over site appearance for improved accessibility and comfort
   </td>
 </tr>
             <!-- Add other phases here as needed -->
@@ -342,24 +363,24 @@ import BackgroundSection from '../../components/BackgroundSection.astro';
           Tailwind’s breakpoint system is powerful, but layout bugs can creep in if you forget to test on smaller screens. Build mobile-first to avoid surprises.
         </td>
       </tr>
+      <tr>
+  <td class="border border-rose-600 px-4 py-2">Back button opened extra tabs</td>
+  <td class="border border-rose-600 px-4 py-2">
+    Navigating between SVG viewer links caused each click to open a new tab due to <code>target="_blank"</code>.
+  </td>
+  <td class="border border-rose-600 px-4 py-2">
+    Replaced <code>target="_blank"</code> with <code>target="_self"</code> on all <code>.svg</code> viewer links.
+  </td>
+</tr>
+<tr>
+  <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300 italic text-center">What I Learned</td>
+</tr>
+<tr>
+  <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300">
+    Small HTML attributes like <code>target</code> can dramatically affect user experience. Always verify how navigation behaves across multiple clicks.
+  </td>
+</tr>
 
-      <tr>
-        <td class="border border-rose-600 px-4 py-2">Secret scan false positives</td>
-        <td class="border border-rose-600 px-4 py-2">
-          <code>ggshield secret scan</code> failed until repo URL ended in <code>.git</code>.
-        </td>
-        <td class="border border-rose-600 px-4 py-2">
-          Documented the “add <code>.git</code>” requirement in my workflow README.
-        </td>
-      </tr>
-      <tr>
-        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300 italic text-center">What I Learned</td>
-      </tr>
-      <tr>
-        <td colspan="3" class="border border-rose-600 px-4 py-2 bg-rose-900 text-yellow-300">
-          Some tools depend on exact URL formatting. When a CLI tool misbehaves, don’t just read the error—check the docs for input expectations.
-        </td>
-      </tr>
     </tbody>
   </table>
 </section>
