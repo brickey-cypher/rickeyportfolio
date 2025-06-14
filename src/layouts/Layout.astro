@@ -1,5 +1,7 @@
 ---
+import ThemeToggle from '../components/ThemeToggle';
 import '../styles/global.css';
+
 const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props;
 ---
 
@@ -10,11 +12,26 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+     <!-- Theme initialization script -->
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          // Fail silently
+        }
+      })();
+    </script>
     <title>{title}</title>
   </head>
 
 <body
-  class="bg-zinc-900 text-white min-h-screen antialiased relative"
+  class="bg-white text-black dark:bg-zinc-900 dark:text-white min-h-screen antialiased relative"
 >
   <!-- Instant fallback background color -->
   <style>
@@ -85,6 +102,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
       setInterval(draw, 35);
     };
   </script>
+   <ThemeToggle client:load />
 </body>
 </html>
 
