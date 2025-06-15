@@ -2,5 +2,4 @@
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer-when-downgrade
-Content-Security-Policy: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
 
