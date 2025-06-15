@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import ThemeToggle from '../components/ThemeToggle.tsx';
+import ThemeToggle from '@components/ThemeToggle';
 const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props;
 ---
 
@@ -12,6 +12,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Early theme script to avoid FOUC -->
     <script is:inline>
       try {
         const theme = localStorage.getItem('theme');
@@ -33,38 +34,38 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
   <body
     class="bg-zinc-900 text-white dark:bg-zinc-900 dark:text-white min-h-screen antialiased relative"
   >
-    <!-- Instant fallback background color -->
+    <!-- Fallback background color to reduce flash -->
     <style>
       body {
-        background-color: #0f0f0f; /* solid dark base for instant paint */
+        background-color: #0f0f0f;
       }
     </style>
 
-    <!-- Dim background image layer -->
+    <!-- Dim patterned background layer -->
     <div
       class="absolute inset-0 bg-hex-pattern opacity-30 z-0 pointer-events-none"
       aria-hidden="true"
     ></div>
 
-    <!-- Matrix rain overlay canvas -->
+    <!-- Matrix rain canvas overlay -->
     <canvas
       id="matrix-overlay"
       class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-20"
     ></canvas>
 
-    <!-- Main content slot -->
+    <!-- Main content area -->
     <div class="relative z-20">
       <slot />
     </div>
 
-    <!-- Alpine.js -->
+    <!-- Alpine.js integration -->
     <script type="module">
       import Alpine from 'alpinejs';
       window.Alpine = Alpine;
       Alpine.start();
     </script>
 
-    <!-- Matrix rain animation -->
+    <!-- Matrix rain animation script -->
     <script is:inline>
       console.log('Matrix script started');
       window.onload = () => {
@@ -117,6 +118,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
       };
     </script>
 
+    <!-- React-based Theme Toggle -->
     <ThemeToggle client:load />
   </body>
 </html>
