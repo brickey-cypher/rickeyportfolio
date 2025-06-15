@@ -8,28 +8,29 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-     <!-- Theme initialization script -->
-    <script>
-      (function() {
-        try {
-          const theme = localStorage.getItem('theme');
-          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        } catch (e) {
-          // Fail silently
-        }
-      })();
-    </script>
-    <title>{title}</title>
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
 
+  <!-- Theme initialization script -->
+  <script is:inline>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (
+        theme === 'dark' ||
+        (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {
+      console.error('Theme init error:', e);
+    }
+  </script>
+</head>
 <body
   class="bg-white text-black dark:bg-zinc-900 dark:text-white min-h-screen antialiased relative"
 >

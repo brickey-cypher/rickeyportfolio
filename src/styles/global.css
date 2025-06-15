@@ -9,7 +9,7 @@
 }
 /* Hex pattern background utility */
 .bg-hex-pattern {
-  background-image: url('/backgrounds/gradient-hexagonal-background.jpg');
+  background-image: url('/backgrounds/gradient-hexagonal-background.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
