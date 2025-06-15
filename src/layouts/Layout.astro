@@ -1,7 +1,5 @@
 ---
 import ThemeToggle from '../components/ThemeToggle';
-import '../styles/global.css';
-
 const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props;
 ---
 
@@ -12,22 +10,6 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-
-    <!-- Theme initialization script -->
-     window.onload = () => {
-  console.log('Matrix script started');
-  const canvas = document.getElementById('matrix-overlay');
-  if (!canvas) {
-    console.error('Matrix canvas not found');
-    return;
-  }
-  const ctx = canvas.getContext('2d');
-  if (!ctx) {
-    console.error('Canvas context not available');
-    return;
-  }
-  // rest of your code ...
-};
 
     <script is:inline>
       try {
@@ -57,7 +39,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
       }
     </style>
 
-    <!-- Dim background image layer (loads after paint) -->
+    <!-- Dim background image layer -->
     <div
       class="absolute inset-0 bg-hex-pattern opacity-30 z-0 pointer-events-none"
       aria-hidden="true"
@@ -69,7 +51,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
       class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-20"
     ></canvas>
 
-    <!-- Main content -->
+    <!-- Main content slot -->
     <div class="relative z-20">
       <slot />
     </div>
@@ -83,9 +65,18 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
 
     <!-- Matrix rain animation -->
     <script is:inline>
+      console.log('Matrix script started');
       window.onload = () => {
         const canvas = document.getElementById('matrix-overlay');
+        if (!canvas) {
+          console.error('Matrix canvas not found');
+          return;
+        }
         const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          console.error('Canvas context not available');
+          return;
+        }
 
         function resizeCanvas() {
           canvas.width = window.innerWidth;
@@ -125,9 +116,10 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
       };
     </script>
 
-    <!-- Theme toggle button -->
     <ThemeToggle client:load />
   </body>
 </html>
+
+
 
 
