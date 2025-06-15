@@ -14,6 +14,21 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <meta name="generator" content={Astro.generator} />
 
     <!-- Theme initialization script -->
+     window.onload = () => {
+  console.log('Matrix script started');
+  const canvas = document.getElementById('matrix-overlay');
+  if (!canvas) {
+    console.error('Matrix canvas not found');
+    return;
+  }
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    console.error('Canvas context not available');
+    return;
+  }
+  // rest of your code ...
+};
+
     <script is:inline>
       try {
         const theme = localStorage.getItem('theme');
