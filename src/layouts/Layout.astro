@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import ThemeToggle from '@components/ThemeToggle';
+import { initMatrixRain } from '../scripts/matrixRain.js';
+
 const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props;
 ---
 
@@ -48,92 +50,32 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     ></div>
 
     <!-- Matrix rain canvas overlay -->
-    <canvas
-      id="matrix-overlay"
-      class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-100"
-    ></canvas>
+<canvas
+  id="matrix-overlay"
+  class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-100"
+></canvas>
 
-    ctx.fillStyle = 'red';
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-console.log('Debug: Painted red background on canvas');
+<!-- Main content area -->
+<div class="relative z-20">
+  <slot />
+</div>
 
-    <!-- Main content area -->
-    <div class="relative z-20">
-      <slot />
-    </div>
-
-    <!-- Alpine.js integration -->
-    <script type="module">
-      import Alpine from 'alpinejs';
-      window.Alpine = Alpine;
-      Alpine.start();
-    </script>
-
-<!-- Matrix rain animation script -->
-<script is:inline>
-  console.log('Matrix script started');
-  document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('matrix-overlay');
-    if (!canvas) {
-      console.error('Matrix canvas not found');
-      return;
-    }
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      console.error('Canvas context not available');
-      return;
-    }
-
-    const letters =
-      'アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
-    const fontSize = 16;
-    let columns = Math.floor(window.innerWidth / fontSize);
-    let drops = new Array(columns).fill(1);
-    let intervalId;
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      columns = Math.floor(window.innerWidth / fontSize);
-      drops = new Array(columns).fill(1);
-      console.log(`Canvas resized: ${canvas.width}x${canvas.height}, columns: ${columns}`);
-
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
-      intervalId = setInterval(draw, 35);
-    }
-
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = '#00f6ff'; // bright blue
-      ctx.font = fontSize + 'px monospace';
-
-      drops.forEach((y, x) => {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, x * fontSize, y * fontSize);
-
-        if (y * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[x] = 0;
-        }
-        drops[x]++;
-      });
-    }
-
-    // Initial setup
-    resizeCanvas();
-
-    // Resize listener
-    window.addEventListener('resize', resizeCanvas);
-  });
+<!-- Alpine.js integration -->
+<script type="module">
+  import Alpine from 'alpinejs';
+  window.Alpine = Alpine;
+  Alpine.start();
 </script>
 
-    <ThemeToggle client:load />
-  </body>
+    <!-- Matrix rain animation script -->
+    <script type="module" is:inline>
+      import { startMatrix } from '../scripts/matrixRain.js';
+      window.addEventListener('DOMContentLoaded', () => {
+        startMatrix();
+      });
+    </script>
+
+<ThemeToggle client:load />
+</body>
 </html>
-
-
-
 
