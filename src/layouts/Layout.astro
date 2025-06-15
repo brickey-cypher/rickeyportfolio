@@ -8,103 +8,111 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
 <!doctype html>
 <html lang="en">
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="generator" content={Astro.generator} />
-  <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
 
-  <!-- Theme initialization script -->
-  <script is:inline>
-    try {
-      const theme = localStorage.getItem('theme');
-      if (
-        theme === 'dark' ||
-        (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
+    <!-- Theme initialization script -->
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem('theme');
+        if (
+          theme === 'dark' ||
+          (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {
+        console.error('Theme init error:', e);
       }
-    } catch (e) {
-      console.error('Theme init error:', e);
-    }
-  </script>
-</head>
-<body
-  class="bg-white text-black dark:bg-zinc-900 dark:text-white min-h-screen antialiased relative"
->
-  <!-- Instant fallback background color -->
-  <style>
-    body {
-      background-color: #0f0f0f; /* solid dark base for instant paint */
-    }
-  </style>
+    </script>
 
-  <!-- Dim background image layer (loads after paint) -->
- <div class="absolute inset-0 bg-hex-pattern opacity-30 z-0 pointer-events-none" aria-hidden="true"></div>
-
-
-  <!-- Matrix rain overlay canvas -->
-  <canvas
-    id="matrix-overlay"
-    class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-20"
-  ></canvas>
-
-  <!-- Main content -->
-  <div class="relative z-20">
-    <slot />
-  </div>
-
-  <!-- Alpine.js -->
-  <script type="module">
-    import Alpine from 'alpinejs'
-    window.Alpine = Alpine
-    Alpine.start()
-  </script>
-
-  <!-- Matrix rain animation -->
-  <script is:inline>
-    window.onload = () => {
-      const canvas = document.getElementById("matrix-overlay");
-      const ctx = canvas.getContext("2d");
-
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    <title>{title}</title>
+  </head>
+  <body
+    class="bg-zinc-900 text-white dark:bg-zinc-900 dark:text-white min-h-screen antialiased relative"
+  >
+    <!-- Instant fallback background color -->
+    <style>
+      body {
+        background-color: #0f0f0f; /* solid dark base for instant paint */
       }
+    </style>
 
-      resizeCanvas();
-      window.addEventListener("resize", resizeCanvas);
+    <!-- Dim background image layer (loads after paint) -->
+    <div
+      class="absolute inset-0 bg-hex-pattern opacity-30 z-0 pointer-events-none"
+      aria-hidden="true"
+    ></div>
 
-      const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-      const fontSize = 16;
-      const columns = Math.floor(window.innerWidth / fontSize);
-      const drops = new Array(columns).fill(1);
+    <!-- Matrix rain overlay canvas -->
+    <canvas
+      id="matrix-overlay"
+      class="fixed top-0 left-0 w-full h-full z-10 pointer-events-none opacity-20"
+    ></canvas>
 
-      function draw() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    <!-- Main content -->
+    <div class="relative z-20">
+      <slot />
+    </div>
 
-        ctx.fillStyle = "#00f6ff"; // bright blue
-        ctx.font = fontSize + "px monospace";
+    <!-- Alpine.js -->
+    <script type="module">
+      import Alpine from 'alpinejs';
+      window.Alpine = Alpine;
+      Alpine.start();
+    </script>
 
-        drops.forEach((y, x) => {
-          const text = letters[Math.floor(Math.random() * letters.length)];
-          ctx.fillText(text, x * fontSize, y * fontSize);
+    <!-- Matrix rain animation -->
+    <script is:inline>
+      window.onload = () => {
+        const canvas = document.getElementById('matrix-overlay');
+        const ctx = canvas.getContext('2d');
 
-          if (y * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[x] = 0;
-          }
-          drops[x]++;
-        });
-      }
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
 
-      setInterval(draw, 35);
-    };
-  </script>
-   <ThemeToggle client:load />
-</body>
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const letters =
+          'アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split(
+            ''
+          );
+        const fontSize = 16;
+        const columns = Math.floor(window.innerWidth / fontSize);
+        const drops = new Array(columns).fill(1);
+
+        function draw() {
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = '#00f6ff'; // bright blue
+          ctx.font = fontSize + 'px monospace';
+
+          drops.forEach((y, x) => {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, x * fontSize, y * fontSize);
+
+            if (y * fontSize > canvas.height && Math.random() > 0.975) {
+              drops[x] = 0;
+            }
+            drops[x]++;
+          });
+        }
+
+        setInterval(draw, 35);
+      };
+    </script>
+
+    <!-- Theme toggle button -->
+    <ThemeToggle client:load />
+  </body>
 </html>
 
 

@@ -5,13 +5,21 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setIsDark(document.documentElement.classList.contains('dark'));
+      const hasDarkClass = document.documentElement.classList.contains('dark');
+      setIsDark(hasDarkClass);
     }
   }, []);
 
   function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-    setIsDark(!isDark);
+    const newIsDark = !isDark;
+    if (newIsDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+    setIsDark(newIsDark);
   }
 
   return (
