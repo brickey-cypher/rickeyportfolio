@@ -8,6 +8,6 @@
     },
     "moduleResolution": "node"
   },
-  "include": ["src/env.d.ts", "src/**/*"],
+  "include": ["src/env.d.ts", "src/**/*", "public/scripts/matrixRain.js", "public/scripts/matrixLoader.js"],
   "exclude": ["dist", "node_modules"]
 }

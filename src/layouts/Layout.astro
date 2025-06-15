@@ -1,8 +1,7 @@
 ---
 import '../styles/global.css';
 import ThemeToggle from '@components/ThemeToggle';
-import { initMatrixRain } from '../scripts/matrixRain.js';
-
+import { initMatrixRain } from '../../public/scripts/matrixRain.js/index.js';
 const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props;
 ---
 
@@ -68,12 +67,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
 </script>
 
     <!-- Matrix rain animation script -->
-    <script type="module" is:inline>
-      import { startMatrix } from '../scripts/matrixRain.js';
-      window.addEventListener('DOMContentLoaded', () => {
-        startMatrix();
-      });
-    </script>
+     <script type="module" src="/scripts/matrixLoader.js"></script>
 
 <ThemeToggle client:load />
 </body>
