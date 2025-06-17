@@ -1,108 +1,36 @@
 ---
-import '../styles/global.css';
-import ThemeToggle from '@components/ThemeToggle';
-const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props;
+import { theme } from '../stores/theme'
+import '../styles/global.css'
+// import ThemeToggle from '../components/ThemeToggle.jsx'
+const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
 ---
-
 <!doctype html>
-<html lang="en">
+<html lang="en" class={theme.value ? 'dark' : ''}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content="Rickey's professional cybersecurity portfolio – showcasing skills, projects, and passion for digital defense.">
     <meta name="generator" content={Astro.generator} />
-     <!-- Theme initialization script -->
-    <script>
+    <style is:inline>
+      html, body {
+        background-color: transparent !important;
+      }
+    </style>
+    <script is:inline>
       (function() {
-        try {
-          const theme = localStorage.getItem('theme');
-          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        } catch (e) {
-          // Fail silently
-        }
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = stored === 'dark' || (!stored && prefersDark);
+        if (isDark) document.documentElement.classList.add('dark');
       })();
     </script>
-    <title>{title}</title>
   </head>
-
-<body
-  class="bg-zinc-900 text-white min-h-screen antialiased relative"
->
-  <!-- Instant fallback background color -->
-  <style>
-    body {
-      background-color: #0f0f0f; /* solid dark base for instant paint */
-    }
-  </style>
-
-    <!-- Dim patterned background layer -->
-    <div
-      class="absolute inset-0 bg-hex-pattern opacity-30 z-0 pointer-events-none"
-      aria-hidden="true"
-    ></div>
-
-    <!-- Matrix rain canvas overlay -->
-<canvas
-  id="matrix-overlay"
-  class="fixed top-0 left-0 w-full h-full z-60 pointer-events-none opacity-30"
-></canvas>
-
-<!-- Main content area -->
-<div class="relative z-10">
-  <slot />
-</div>
-
-<!-- Alpine.js integration -->
-<script type="module">
-  import Alpine from 'alpinejs';
-  window.Alpine = Alpine;
-  Alpine.start();
-</script>
-
-  <!-- Matrix rain animation -->
-  <script is:inline>
-    window.onload = () => {
-      const canvas = document.getElementById("matrix-overlay");
-      const ctx = canvas.getContext("2d");
-
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-
-      resizeCanvas();
-      window.addEventListener("resize", resizeCanvas);
-
-      const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-      const fontSize = 16;
-      const columns = Math.floor(window.innerWidth / fontSize);
-      const drops = new Array(columns).fill(1);
-
-      function draw() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "#00f6ff"; // bright blue
-        ctx.font = fontSize + "px monospace";
-
-        drops.forEach((y, x) => {
-          const text = letters[Math.floor(Math.random() * letters.length)];
-          ctx.fillText(text, x * fontSize, y * fontSize);
-
-          if (y * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[x] = 0;
-          }
-          drops[x]++;
-        });
-      }
-
-      setInterval(draw, 35);
-    };
-  </script>
-</body>
+  <body class="text-white dark:text-white transition-colors duration-300">
+    <slot />
+    <!-- ThemeToggle removed for now -->
+  </body>
 </html>
+
+
 

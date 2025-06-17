@@ -6,21 +6,34 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "clean:svgs": "node clean-svgs.js"
   },
   "dependencies": {
     "@astrojs/netlify": "^6.3.4",
+    "@astrojs/preact": "^4.1.0",
     "@astrojs/react": "^4.3.0",
-    "alpinejs": "^3.14.9",
+    "@preact/signals-react": "^3.2.0",
+    "@tailwindcss/vite": "^4.1.10",
     "astro": "^5.8.1",
     "framer-motion": "^12.16.0",
+    "preact": "^10.26.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
+    "@eslint/css": "^0.9.0",
+    "@eslint/js": "^9.29.0",
+    "@eslint/json": "^0.12.0",
+    "@eslint/markdown": "^6.5.0",
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.4",
-    "tailwindcss": "^3.4.17"
+    "eslint": "^9.29.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.2.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript-eslint": "^8.34.1",
+    "vite-plugin-compression": "^0.5.1"
   }
 }

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import type { Project } from './types';
 import FadeInSection from './FadeInSection'; // ✅ Import the animation wrapper
 import CustomButton from "../components/CustomButton";
@@ -12,7 +13,7 @@ export default function Projects({ projects }: ProjectsProps) {
   return (
     <section className="my-12 px-4 sm:px-6 bg-mobilebg sm:bg-desktopbg">
       <a href="/" className="inline-block text-sm text-blue-600 hover:underline mb-4">
-        ← Back to Home
+        Back to Home Page ←
       </a>
 
       <h1 className="text-3xl font-bold text-center mb-6 text-gray-100">Projects</h1>

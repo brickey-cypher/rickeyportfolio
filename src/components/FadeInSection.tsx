@@ -1,4 +1,5 @@
 // src/components/FadeInSection.tsx
+import * as React from 'react';
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 

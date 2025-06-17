@@ -1,16 +1,55 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Global transparent background fallback */
+html, body {
+  background-color: transparent !important;
+  margin: 0;
+  padding: 0;
+  transition-property: color, background-color;
+  transition-duration: 200ms;
+}
+
+/* Base styles with dark mode support */
+body {
+  background-color: #230a0a; /* fallback light mode */
+  color: #1a202c; /* slate-800 */
+}
+
+/* Dark mode styles when <html> has .dark */
+html.dark body {
+  background-color: #18181b; /* zinc-900 */
+  color: #ffffff;
+}
+
+/* Hex pattern background utility - now with dark mode adjustment */
+.bg-hex-pattern {
+  background-image: url('/backgrounds/bg-optimized.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+}
+
+html.dark .bg-hex-pattern {
+  opacity: 0.2;
+}
+
+/* Mobile adjustments with dark mode support */
 @media (max-width: 639px) {
   .mobile-bg-adjust {
     background-color: #f4f4f4;
     color: #d7a4a4;
   }
+
+  html.dark .mobile-bg-adjust {
+    background-color: #27272a; /* zinc-800 */
+    color: #fecaca; /* red-200 */
+  }
 }
-/* Hex pattern background utility */
-.bg-hex-pattern {
-  background-image: url('/backgrounds/gradient-hexagonal-background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
+/* Matrix overlay adjustment for dark mode */
+#matrix-overlay {
+  opacity: 0.3;
+}
+
+html.dark #matrix-overlay {
+  opacity: 0.2;
 }

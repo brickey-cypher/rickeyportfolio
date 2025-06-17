@@ -1,25 +1,120 @@
 ---
-// Props
+import ThemeToggle from "./ThemeToggle";
+
 const {
-  backgroundImage,
-  opacity = 0.5, // Default semi-transparent overlay
+  backgroundImage = '/backgrounds/bg-optimized.webp',
+  opacity = 0.7,
   textOutline = true,
-} = Astro.props
+  fadeIntensity = 'medium'
+} = Astro.props;
+
+const fadePresets = {
+  subtle: { blur: 3, height: 8, opacity: 0.6 },
+  medium: { blur: 5, height: 12, opacity: 0.8 },
+  strong: { blur: 8, height: 16, opacity: 0.9 }
+};
+const fade = fadePresets[fadeIntensity] || fadePresets.medium;
 ---
 
-<section
-  class="relative bg-cover bg-center text-white py-16 px-4"
-  style={`background-image: url(${backgroundImage})`}
->
-  <div class="absolute inset-0 bg-black" style={`opacity: ${opacity};`} aria-hidden="true"></div>
+<!-- Background image wrapper -->
+<div class="fixed inset-0 -z-10">
+  <div
+    class="absolute inset-0 bg-cover bg-center"
+    style={`background-image: url('${backgroundImage}'); opacity: ${opacity};`}
+    aria-hidden="true"
+  ></div>
 
-  <div class={`relative z-10 max-w-4xl mx-auto ${textOutline ? 'text-outline' : ''}`}>
+  <!-- Matrix rain -->
+  <canvas
+    id="matrix-overlay"
+    class="absolute inset-0 w-full h-full opacity-30"
+    aria-hidden="true"
+  ></canvas>
+</div>
+
+<!-- Foreground content -->
+<div class="relative z-10 min-h-screen text-white">
+  <!-- Optional overlay -->
+  <div
+    class="absolute inset-0 bg-black"
+    style={`opacity: ${opacity * 0.4};`}
+    aria-hidden="true"
+  ></div>
+
+  <!-- Fade connectors -->
+  <div
+    class="layer-connector layer-connector-top"
+    style={`--fade-height: ${fade.height}px; --fade-blur: ${fade.blur}px; --fade-opacity: ${fade.opacity};`}
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="layer-connector layer-connector-bottom"
+    style={`--fade-height: ${fade.height}px; --fade-blur: ${fade.blur}px; --fade-opacity: ${fade.opacity};`}
+    aria-hidden="true"
+  ></div>
+
+  <!-- Content -->
+  <div class={`relative z-20 max-w-4xl mx-auto py-16 px-4 ${textOutline ? 'text-outline' : ''}`}>
+    <!-- Theme toggle hidden for now -->
+    <div class="toggle-button-wrapper pt-[calc(var(--fade-height)/2)] hidden">
+      <slot name="toggle">
+        <ThemeToggle client:load />
+      </slot>
+    </div>
     <slot />
   </div>
-</section>
+</div>
 
-<style>
+<style is:global>
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: transparent;
+  }
+
   .text-outline {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('matrix-overlay');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const chars = "01アァカサタナハマヤャラワ...";
+    const fontSize = 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00f6ff';
+      ctx.font = `${fontSize}px monospace`;
+
+      drops.forEach((y, i) => {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      });
+    }
+
+    setInterval(draw, 35);
+  });
+</script>
+

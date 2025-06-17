@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import ProjectsComponent from '../components/project.tsx'
+import BackgroundSection from '../components/BackgroundSection.astro'
+import ProjectsComponent from '../components/project'
 import CustomButton from '../components/CustomButton'
-import FadeInSection from '../components/FadeInSection.tsx'
+import FadeInSection from '../components/FadeInSection'
 import PdfViewer from './pdf-viewer.astro'
+
 const projects = [
   {
     title: 'Security Incident & Assessment Report',
@@ -69,5 +71,8 @@ const projects = [
 ---
 
 <Layout title="Projects | Brianna Rickey">
+  <BackgroundSection opacity={1}>
   <ProjectsComponent client:visible projects={projects} />
+</BackgroundSection>
 </Layout>
+
