@@ -10,7 +10,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name="description" content="Rickey's professional cybersecurity portfolio – showcasing skills, projects, and passion for digital defense.">
+    <meta name="description" content="BRickey's cybersecurity portfolio – showcasing skills, projects, and passion for digital defense, social engineering, and threat analysis.">
     <meta name="generator" content={Astro.generator} />
     <style is:inline>
       html, body {
@@ -25,12 +25,29 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
         if (isDark) document.documentElement.classList.add('dark');
       })();
     </script>
+    <link rel="canonical" href="https://rickeyportfolio.netlify.app/" />
+</head>
+
   </head>
   <body class="text-white dark:text-white transition-colors duration-300">
-    <slot />
-    <!-- ThemeToggle removed for now -->
+    <a href="#main-content" class="sr-only focus:not-sr-only absolute top-0 left-0 bg-white text-black p-2 z-50">
+      Skip to main content
+    </a>
+
+    <header>
+      <!-- Add nav here later if needed -->
+    </header>
+
+    <main id="main-content" role="main">
+      <slot />
+    </main>
+
+    <footer>
+      <!-- Optional global footer slot -->
+    </footer>
   </body>
 </html>
+
 
 
 

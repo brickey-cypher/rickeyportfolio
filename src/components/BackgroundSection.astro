@@ -3,45 +3,49 @@ import ThemeToggle from "./ThemeToggle";
 
 const {
   backgroundImage = '/backgrounds/bg-optimized.webp',
-  opacity = 0.7,
+  opacity = 0.2,
   textOutline = true,
-  fadeIntensity = 'medium'
+  fadeIntensity = 'light'
 } = Astro.props;
 
 const fadePresets = {
-  subtle: { blur: 3, height: 8, opacity: 0.6 },
+  subtle: { blur: 3, height: 8, opacity: 0.1 },
   medium: { blur: 5, height: 12, opacity: 0.8 },
   strong: { blur: 8, height: 16, opacity: 0.9 }
 };
 const fade = fadePresets[fadeIntensity] || fadePresets.medium;
 ---
 
-<!-- Background image wrapper -->
-<div class="fixed inset-0 -z-10">
+<!-- Background wrapper with lazy-loaded image -->
+<div class="fixed inset-0 -z-10" id="bg-wrapper" data-bg={backgroundImage} aria-hidden="true">
   <div
     class="absolute inset-0 bg-cover bg-center"
-    style={`background-image: url('${backgroundImage}'); opacity: ${opacity};`}
-    aria-hidden="true"
+    style={`opacity: ${opacity};`}
   ></div>
 
-  <!-- Matrix rain -->
+  <!-- Matrix rain canvas -->
   <canvas
     id="matrix-overlay"
-    class="absolute inset-0 w-full h-full opacity-30"
-    aria-hidden="true"
+    class="absolute inset-9 w-full h-full opacity-100"
   ></canvas>
 </div>
 
 <!-- Foreground content -->
 <div class="relative z-10 min-h-screen text-white">
-  <!-- Optional overlay -->
+
+  <!-- Optional overlays for depth and color gradient -->
   <div
-    class="absolute inset-0 bg-black"
-    style={`opacity: ${opacity * 0.4};`}
+    class="absolute inset-0 bg-violet-950"
+    style={`opacity: ${opacity * 0.1};`}
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-transparent to-violet-950"
+    style={`opacity: ${opacity * 0.2};`}
     aria-hidden="true"
   ></div>
 
-  <!-- Fade connectors -->
+  <!-- Top and bottom fade transitions -->
   <div
     class="layer-connector layer-connector-top"
     style={`--fade-height: ${fade.height}px; --fade-blur: ${fade.blur}px; --fade-opacity: ${fade.opacity};`}
@@ -54,9 +58,8 @@ const fade = fadePresets[fadeIntensity] || fadePresets.medium;
     aria-hidden="true"
   ></div>
 
-  <!-- Content -->
+  <!-- Slot for page content -->
   <div class={`relative z-20 max-w-4xl mx-auto py-16 px-4 ${textOutline ? 'text-outline' : ''}`}>
-    <!-- Theme toggle hidden for now -->
     <div class="toggle-button-wrapper pt-[calc(var(--fade-height)/2)] hidden">
       <slot name="toggle">
         <ThemeToggle client:load />
@@ -80,41 +83,28 @@ const fade = fadePresets[fadeIntensity] || fadePresets.medium;
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('matrix-overlay');
-    const ctx = canvas.getContext('2d');
+    const bgWrapper = document.getElementById('bg-wrapper');
+    const bgUrl = bgWrapper?.dataset.bg;
 
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
+    if (!bgWrapper || !bgUrl) return;
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const chars = "01アァカサタナハマヤャラワ...";
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
-
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = '#00f6ff';
-      ctx.font = `${fontSize}px monospace`;
-
-      drops.forEach((y, i) => {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, y * fontSize);
-
-        if (y * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bgDiv = bgWrapper.querySelector('div.bg-cover');
+          if (bgDiv) {
+            bgDiv.style.backgroundImage = `url('${bgUrl}')`;
+          }
+          obs.unobserve(bgWrapper);
         }
-        drops[i]++;
       });
-    }
+    });
 
-    setInterval(draw, 35);
+    observer.observe(bgWrapper);
+
+    // You can add your Matrix rain drawing logic here if needed
   });
 </script>
+
+
 

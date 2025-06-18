@@ -1,22 +1,25 @@
 import { signal } from '@preact/signals';
 
-// Detect system preference
-const prefersDark = typeof window !== 'undefined'
-  ? window.matchMedia('(prefers-color-scheme: dark)').matches
-  : false;
+// Start with a safe default (light mode)
+export const theme = signal(false);
 
-// Get stored preference
-const stored = typeof localStorage !== 'undefined'
-  ? localStorage.getItem('theme')
-  : null;
+// Initialize theme on client mount
+export function initTheme() {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') return;
 
-// Signal: true = dark mode, false = light mode
-export const theme = signal(stored ? stored === 'dark' : prefersDark);
+  // Check stored preference first
+  const stored = localStorage.getItem('theme');
 
-// **Remove this block to prevent initial class toggle here**
-// if (typeof document !== 'undefined') {
-//   document.documentElement.classList.toggle('dark', theme.value);
-// }
+  if (stored === 'dark' || stored === 'light') {
+    theme.value = stored === 'dark';
+  } else {
+    // Otherwise check system preference
+    theme.value = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  // Set the class accordingly
+  document.documentElement.classList.toggle('dark', theme.value);
+}
 
 // Toggle function
 export function toggleTheme() {
@@ -30,4 +33,5 @@ export function toggleTheme() {
     localStorage.setItem('theme', theme.value ? 'dark' : 'light');
   }
 }
+
 

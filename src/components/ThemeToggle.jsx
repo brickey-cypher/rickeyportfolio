@@ -1,14 +1,38 @@
+import { useEffect, useState } from 'react';
+import { theme, toggleTheme, initTheme } from '../stores/theme';
 import { useSignalEffect, useSignal } from '@preact/signals-react';
-import { theme, toggleTheme } from '../stores/theme';
 
 export default function ThemeToggle() {
-  // Create a local signal to cause re-render when theme changes
   const localTheme = useSignal(theme.value);
+
+  // Run initTheme once on client mount
+  useEffect(() => {
+    initTheme();
+  }, []);
 
   // Sync local signal with global theme signal
   useSignalEffect(() => {
     localTheme.value = theme.value;
   });
+
+  // Mounted flag to avoid hydration mismatch
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // Render a placeholder button while waiting for hydration
+    return (
+      <button
+        disabled
+        className="relative z-30 w-14 h-8 rounded-full flex items-center px-1 bg-gray-300 dark:bg-gray-700"
+        aria-label="Toggle Theme"
+      >
+        <div className="relative w-6 h-6 rounded-full shadow-md bg-gray-500" />
+      </button>
+    );
+  }
 
   return (
     <button
@@ -29,4 +53,7 @@ export default function ThemeToggle() {
     </button>
   );
 }
+
+
+
 
