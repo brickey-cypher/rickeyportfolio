@@ -6,7 +6,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'rickeyportfolio.netlify.app',
+  site: 'https://rickeyportfolio.netlify.app',
   adapter: netlify(),
   output: 'static', // enables pre-rendering for faster TTFB if your routes support it
   integrations: [tailwind(), react(), sitemap()],
