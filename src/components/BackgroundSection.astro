@@ -59,7 +59,7 @@ const fade = fadePresets[fadeIntensity] || fadePresets.medium;
   ></div>
 
   <!-- Slot for page content -->
-  <div class={`relative z-20 max-w-4xl mx-auto py-16 px-4 ${textOutline ? 'text-outline' : ''}`}>
+  <div class={`relative z-20 max-w-4xl mx-auto py-4 px-4 ${textOutline ? 'text-outline' : ''}`}>
     <div class="toggle-button-wrapper pt-[calc(var(--fade-height)/2)] hidden">
       <slot name="toggle">
         <ThemeToggle client:load />
