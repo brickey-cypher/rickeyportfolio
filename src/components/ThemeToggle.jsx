@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { theme, toggleTheme, initTheme } from '../stores/theme';
 import { useSignalEffect, useSignal } from '@preact/signals-react';
