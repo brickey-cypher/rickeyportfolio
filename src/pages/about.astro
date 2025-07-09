@@ -1,9 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import BackgroundSection from '../components/BackgroundSection.astro'
+import IconLink from '../components/IconLink.astro'
 ---
 
-<Layout title="About | Brianna Marie Rickey">
+<Layout 
+  title="About | Brianna Marie Rickey"
+  description="Learn more about Brianna Rickey, an aspiring cybersecurity specialist with a passion for social engineering, threat analysis, and digital defense. Connect with her on GitHub and LinkedIn."
+>
   <BackgroundSection opacity={1}>
     <div class="mb-4 flex items-center">
       <a
@@ -35,6 +39,27 @@ import BackgroundSection from '../components/BackgroundSection.astro'
             When I’m not diving into cybersecurity, I enjoy gardening, rock hounding, and spending
             time with my dogs.
           </p>
+        </div>
+      </section>
+
+      <section class="text-center bg-black bg-opacity-20 rounded-lg p-8 mt-8">
+        <h2 class="text-2xl font-bold mb-6 text-white">Connect With Me</h2>
+        <div class="flex justify-center space-x-6">
+          <IconLink
+            href="https://github.com/brickey-cypher"
+            svgPath="/svgs/github.svg"
+            label="GitHub"
+          />
+          <IconLink
+            href="https://www.linkedin.com/in/brianna-rickey-ab1ab5357/"
+            svgPath="/svgs/linkedin.svg"
+            label="LinkedIn"
+          />
+          <IconLink
+            href="mailto:brimarie7797@gmail.com"
+            svgPath="/svgs/email.svg"
+            label="Email"
+          />
         </div>
       </section>
     </main>

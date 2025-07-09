@@ -2,18 +2,25 @@
 import Layout from '../layouts/Layout.astro'
 import BackgroundSection from '../components/BackgroundSection.astro'
 import { Image } from 'astro:assets'
+import lighthouseScore from '../assets/lighthouse-score.jpg'
 ---
 
-<Layout title="Home | Brianna Marie Rickey | Cybersecurity Portfolio" description="Explore the portfolio of Brianna Marie Rickey, an aspiring cybersecurity specialist focused on social engineering, threat analysis, and digital defense.">
+<Layout 
+  title="Brianna Marie Rickey | Cybersecurity Portfolio"
+  description="Brianna's cybersecurity portfolio – showcasing skills in digital defense, threat analysis, and social engineering. Explore projects and learn more about her passion for cybersecurity."
+>
 
   <main class="bg-mobilebg sm:bg-desktopbg" id="main-content" role="main">
   <BackgroundSection backgroundImage="/backgrounds/bg-optimized.webp" opacity={0.9} fadeIntensity="medium">
       <div class="text-center text-s text-black bg-gray-300 bg-opacity-70 p-1 rounded mb-1 border border-purple-500 sm:mx-auto max-w-xl">
     For the best experience, switch to desktop view in your mobile browser.
   </div>
-          <img
-    src="/lighthouse-score.jpg"
+          <Image 
+    src={lighthouseScore} 
     alt="Lighthouse performance score of my portfolio site"
+    widths={[200, 400, 800]}
+    sizes="(max-width: 360px) 200px, (max-width: 768px) 400px, 800px"
+    format="webp"
     class="w-automax-w-4xl rounded-xl shadow-x3 mx-auto mt-1 mb-1"
     />
     <section class="max-w-3xl mx-auto py-12 px-6 text-center bg-black bg-opacity-20 rounded-lg">

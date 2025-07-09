@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import type { Project } from './types';
 import FadeInSection from './FadeInSection'; // ✅ Import the animation wrapper
-import CustomButton from "../components/CustomButton";
 interface ProjectsProps {
   projects: Project[];
 }

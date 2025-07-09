@@ -1,10 +1,8 @@
 ---
+// Fixed import: correct file and name
 import Layout from '../layouts/Layout.astro'
 import BackgroundSection from '../components/BackgroundSection.astro'
-import ProjectsComponent from '../components/project'
-import CustomButton from '../components/CustomButton'
-import FadeInSection from '../components/FadeInSection'
-import PdfViewer from './pdf-viewer.astro'
+import ProjectsView from '../components/project'
 
 const projects = [
   {
@@ -67,12 +65,21 @@ const projects = [
       'Python script that auto-updates an IP allow-list by removing addresses found in a deny-list.',
     pdf: '/pdf-viewer?src=/projects/algorithm-file-updates-python.pdf',
   },
+  {
+    title: 'TOTP Authenticator App',
+    description:
+      'A Flutter-based TOTP authenticator app with secure PIN protection, QR code support, and countdown timers.',
+    pdf: '/totp-auth',
+  },
 ]
 ---
 
-<Layout title="Projects | Brianna Rickey">
+<Layout 
+  title="Projects | Brianna Marie Rickey"
+  description="Explore a collection of cybersecurity projects by Brianna Rickey, including work on incident response, network analysis, and secure coding. View detailed reports and analyses."
+>
   <BackgroundSection opacity={1}>
-  <ProjectsComponent client:visible projects={projects} />
-</BackgroundSection>
+  <ProjectsView client:visible projects={projects} />
+  </BackgroundSection>
 </Layout>
 

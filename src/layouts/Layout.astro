@@ -2,7 +2,10 @@
 import { theme } from '../stores/theme'
 import '../styles/global.css'
 // import ThemeToggle from '../components/ThemeToggle.jsx'
-const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
+const { 
+  title = 'Brianna Marie Rickey | Cybersecurity Portfolio',
+  description = "Brianna's cybersecurity portfolio – showcasing skills, projects, and passion for digital defense, social engineering, and threat analysis."
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en" class={theme.value ? 'dark' : ''}>
@@ -10,7 +13,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name="description" content="BRickey's cybersecurity portfolio – showcasing skills, projects, and passion for digital defense, social engineering, and threat analysis.">
+    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <style is:inline>
       html, body {
@@ -25,7 +28,7 @@ const { title = 'Brianna Marie Rickey | Cybersecurity Portfolio' } = Astro.props
         if (isDark) document.documentElement.classList.add('dark');
       })();
     </script>
-    <link rel="canonical" href="https://rickeyportfolio.netlify.app/" />
+    <link rel="canonical" href={Astro.url.href} />
 </head>
 
   </head>

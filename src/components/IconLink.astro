@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  svgPath: string;
+  label: string;
+}
+
+const { href, svgPath, label } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+  class="text-white hover:text-gray-400 transition-colors duration-300"
+>
+  <img src={svgPath} alt={label} class="w-8 h-8" />
+</a>
