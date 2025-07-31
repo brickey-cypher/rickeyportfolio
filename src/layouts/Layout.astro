@@ -1,12 +1,15 @@
 ---
-import { theme } from '../stores/theme'
-import '../styles/global.css'
+import { theme } from '../stores/theme';
+import '../styles/global.css';
 // import ThemeToggle from '../components/ThemeToggle.jsx'
-const { 
+import ChatbotPopup from '../components/ChatbotPopup.jsx';
+
+const {
   title = 'Brianna Marie Rickey | Cybersecurity Portfolio',
   description = "Brianna's cybersecurity portfolio – showcasing skills, projects, and passion for digital defense, social engineering, and threat analysis."
 } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en" class={theme.value ? 'dark' : ''}>
   <head>
@@ -29,9 +32,8 @@ const {
       })();
     </script>
     <link rel="canonical" href={Astro.url.href} />
-</head>
-
   </head>
+
   <body class="text-white dark:text-white transition-colors duration-300">
     <a href="#main-content" class="sr-only focus:not-sr-only absolute top-0 left-0 bg-white text-black p-2 z-50">
       Skip to main content
@@ -48,9 +50,8 @@ const {
     <footer>
       <!-- Optional global footer slot -->
     </footer>
+
+    <!-- Chatbot Popup -->
+    <ChatbotPopup client:load />
   </body>
 </html>
-
-
-
-

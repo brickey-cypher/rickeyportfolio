@@ -1,0 +1,29 @@
+.chat-input {
+  flex: 1;
+  padding: 12px 16px !important;
+  border: 2px solid #007acc !important;
+  border-radius: 24px !important;
+  outline: none !important;
+  font-size: 14px !important;
+  background-color: #fff !important;
+  color: #000 !important;
+  box-sizing: border-box !important;
+  height: 44px !important;
+  font-family: inherit !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+.chat-input:focus {
+  box-shadow: 0 0 0 2px rgba(0,122,204,0.2) !important;
+  border-color: #007acc !important;
+}
+
+/* Ensure text is visible in dark mode */
+:global(html.dark) .chat-input {
+  background-color: #fff !important;
+  color: #000 !important;
+}

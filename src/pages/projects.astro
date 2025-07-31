@@ -3,83 +3,15 @@
 import Layout from '../layouts/Layout.astro'
 import BackgroundSection from '../components/BackgroundSection.astro'
 import ProjectsView from '../components/project'
+import { projects } from '../data/projects.js';
 
-const projects = [
-  {
-    title: 'Security Incident & Assessment Report',
-    description:
-      'Investigated a web-based malware incident involving HTTP traffic. Used tcpdump to analyze redirection patterns and identify a malicious file disguised as a browser update.',
-    pdf: '/pdf-viewer?src=/projects/security-incident-assessment-report.pdf',
-  },
-  {
-    title: 'Risk Register',
-    description:
-      'Conducted a risk assessment for a coastal bank with on-premise and remote employees. Evaluated key assets including funds, user databases, and financial records.',
-    pdf: '/pdf-viewer?src=/projects/risk-register.pdf',
-  },
-  {
-    title: 'Scope, Goals, & Risk Assessment Report',
-    description:
-      'Conducted a comprehensive security audit of Botium Toys, reviewing assets, internal systems, and compliance practices.',
-    pdf: '/pdf-viewer?src=/projects/cybersecurity-incident-report.pdf',
-  },
-  {
-    title: 'Incident Report Network Traffic Analysis',
-    description:
-      'Analyzed a network disruption caused by a SYN flood attack targeting a web server. Identified excessive TCP SYN requests overwhelming the server.',
-    pdf: '/pdf-viewer?src=/projects/incident-report-network-analysis.pdf',
-  },
-  {
-    title: 'Incident Report Analysis',
-    description:
-      'Responded to a simulated DDoS attack caused by an ICMP flood. Documented mitigation steps and mapped actions to the NIST Cybersecurity Framework.',
-    pdf: '/pdf-viewer?src=/projects/cybersecurity-incident-analysis.pdf',
-  },
-  {
-    title: 'Home Asset Inventory',
-    description:
-      'Created an asset inventory for home network devices, assessing ownership, sensitivity, and access designations.',
-    pdf: '/pdf-viewer?src=/projects/home-asset-inventory.pdf',
-  },
-  {
-    title: 'File Permissions in Linux',
-    description:
-      'Audited and adjusted file and directory permissions to align with team access requirements.',
-    pdf: '/pdf-viewer?src=/projects/file-permissions-linux.pdf',
-  },
-  {
-    title: 'Data Leak Worksheet',
-    description:
-      'Investigated a data leak tied to excessive access and recommended role-based restrictions.',
-    pdf: '/pdf-viewer?src=/projects/data-leak-worksheet.pdf',
-  },
-  {
-    title: 'Apply Filters to SQL Queries',
-    description:
-      'Used SQL with filters to perform security tasks like identifying unauthorized access attempts.',
-    pdf: '/pdf-viewer?src=/projects/apply-filter-SQL-queries.pdf',
-  },
-  {
-    title: 'Algorithm for File Updates in Python',
-    description:
-      'Python script that auto-updates an IP allow-list by removing addresses found in a deny-list.',
-    pdf: '/pdf-viewer?src=/projects/algorithm-file-updates-python.pdf',
-  },
-  {
-    title: 'TOTP Authenticator App',
-    description:
-      'A Flutter-based TOTP authenticator app with secure PIN protection, QR code support, and countdown timers.',
-    pdf: '/totp-auth',
-  },
-]
 ---
 
-<Layout 
+<Layout
   title="Projects | Brianna Marie Rickey"
   description="Explore a collection of cybersecurity projects by Brianna Rickey, including work on incident response, network analysis, and secure coding. View detailed reports and analyses."
 >
   <BackgroundSection opacity={1}>
-  <ProjectsView client:visible projects={projects} />
+    <ProjectsView client:visible projects={projects} />
   </BackgroundSection>
 </Layout>
-

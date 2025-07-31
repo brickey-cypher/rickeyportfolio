@@ -1,14 +1,27 @@
 {
-  // "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ]
     },
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "jsxImportSource": "react"
   },
-  "include": ["src/env.d.ts", "src/**/*.ts", "src/**/*.tsx", "public/scripts/matrixRain.js", "public/scripts/matrixLoader.js"],
-  "exclude": ["dist", "public/backgrounds/node_modules"]
+  "include": [
+    "src/env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "public/scripts/matrixRain.js",
+    "public/scripts/matrixLoader.js"
+  ],
+  "exclude": [
+    "dist",
+    "public/backgrounds/node_modules"
+  ]
 }
