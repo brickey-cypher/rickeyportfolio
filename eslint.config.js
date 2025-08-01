@@ -7,15 +7,43 @@ import markdown from "@eslint/markdown";
 import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
 
-
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"], plugins: { js }, extends: ["js/recommended"] },
-  { files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"], languageOptions: { globals: globals.browser } },
+  {
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    plugins: { js },
+    extends: ["js/recommended"],
+  },
+  {
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    languageOptions: { globals: globals.browser },
+  },
+
+  // TypeScript recommended config
   tseslint.configs.recommended,
+
+  // React recommended config
   pluginReact.configs.flat.recommended,
+
+  // JSON
   { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
   { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
   { files: ["**/*.json5"], plugins: { json }, language: "json/json5", extends: ["json/recommended"] },
+
+  // Markdown
   { files: ["**/*.md"], plugins: { markdown }, language: "markdown/gfm", extends: ["markdown/recommended"] },
+
+  // CSS
   { files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },
+
+  // FIX: Node environment for Netlify functions (CommonJS files)
+  {
+    files: ["netlify/functions/**/*.cjs"],
+    languageOptions: {
+      globals: globals.node, // Enable Node globals like process, require, exports
+    },
+    rules: {
+      "import/no-commonjs": "off",
+      "no-undef": "off",
+    },
+  },
 ]);
