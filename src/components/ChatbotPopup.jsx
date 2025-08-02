@@ -22,7 +22,7 @@ function MessageBubble({ msg }) {
           wordWrap: 'break-word',
           fontSize: '14px',
           lineHeight: '1.4',
-          ...(msg.from === 'user' 
+          ...(msg.from === 'user'
             ? { borderBottomRightRadius: '4px' }
             : { borderTopLeftRadius: '4px' })
         }}
@@ -38,7 +38,7 @@ function MessageBubble({ msg }) {
 // --- MessageList component ---
 function MessageList({ messages }) {
   const messagesEndRef = useRef(null);
-  
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -71,53 +71,64 @@ function ChatbotPopup() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // NEW: Conversation starter state
+  const [conversationStarters] = useState([
+    "What are programming languages have you worked with?",
+    "Tell me about your skills",
+    "What's your experience with cybersecurity?",
+    "How did you build this chatbot?"
+  ]);
+  const [startersVisible, setStartersVisible] = useState(true);
+
   const inputRef = useRef(null);
-  
+
   // Focus input when chat opens
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isOpen]);
-  
+
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
-  
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
   };
-  
+
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
 
-  async function sendMessage() {
-    const userMessage = input.trim();
+  async function sendMessage(textOverride) {
+    const userMessage = (textOverride || input).trim();
     if (!userMessage || isLoading) return;
-    
+
     // Add user message
     setMessages(prev => [...prev, { from: 'user', text: userMessage }]);
     setInput('');
     setIsLoading(true);
-    
+    setStartersVisible(false); // Hide starters after interaction
+
     // Add typing indicator
     setMessages(prev => [...prev, { from: 'bot', text: '...', isTyping: true }]);
-    
+
     try {
       const response = await fetch('/.netlify/functions/chatbot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: userMessage }),
       });
-      
+
       if (!response.ok) throw new Error('Network response was not ok');
-      
+
       const data = await response.json();
-      
+
       // Remove typing indicator and add bot response
       setMessages(prev => {
         const withoutTyping = prev.filter(msg => !msg.isTyping);
@@ -217,10 +228,39 @@ function ChatbotPopup() {
               ×
             </button>
           </div>
-          
+
           {/* Messages */}
           <MessageList messages={messages} />
-          
+
+          {/* Conversation Starter Buttons */}
+          {startersVisible && (
+            <div style={{
+              padding: '8px 12px',
+              borderTop: '1px solid #eee',
+              backgroundColor: '#f9f9f9',
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '6px'
+            }}>
+              {conversationStarters.map((starter, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => sendMessage(starter)}
+                  style={{
+                    background: '#e0e0e0',
+                    border: 'none',
+                    borderRadius: '16px',
+                    padding: '6px 12px',
+                    cursor: 'pointer',
+                    fontSize: '13px'
+                  }}
+                >
+                  {starter}
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Input Area */}
           <div style={{
             padding: '12px',
@@ -240,7 +280,7 @@ function ChatbotPopup() {
               disabled={isLoading}
             />
             <button
-              onClick={sendMessage}
+              onClick={() => sendMessage()}
               disabled={isLoading || !input.trim()}
               style={{
                 background: '#007acc',
