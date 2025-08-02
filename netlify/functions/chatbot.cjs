@@ -1,10 +1,12 @@
 /* eslint-env node */
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // allow self-signed certs
 
 require('dotenv').config();
 const { Pool } = require('pg');
+const { exec } = require('child_process');
 
+// Debug log for DB connection
 console.log(
   'Database connection string:',
   process.env.DATABASE_URL
@@ -12,6 +14,7 @@ console.log(
     : 'Not set'
 );
 
+// Initialize Postgres connection pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -20,7 +23,30 @@ const pool = new Pool({
   },
 });
 
-// Test connection once
+// Full path to your Python executable inside the venv (adjust if needed)
+const pathToVenvPython = "C:\\portfolio-project\\rickeyportfolio\\local_embedder\\venv\\Scripts\\python.exe";
+
+function getEmbeddingFromPython(text) {
+  return new Promise((resolve, reject) => {
+    const safeText = text.replace(/"/g, '\\"');
+    exec(`"${pathToVenvPython}" local_embedder/generate_single_embedding.py "${safeText}"`, (error, stdout, stderr) => {
+      if (error) {
+        console.error('Error calling Python embedder:', stderr || error);
+        reject(error);
+      } else {
+        try {
+          const result = JSON.parse(stdout);
+          resolve(result.embedding);
+        } catch (e) {
+          console.error('Failed to parse embedding from Python:', stdout);
+          reject(e);
+        }
+      }
+    });
+  });
+}
+
+// Test DB connection once
 (async () => {
   try {
     const client = await pool.connect();
@@ -47,11 +73,9 @@ exports.handler = async (event) => {
     }
 
     const searchTerm = `%${question}%`;
-
-    // Normalize question into words (lowercase, remove punctuation)
     const words = question.toLowerCase().match(/\w+/g) || [];
 
-    // Expand words with singular/plural variations
+    // Generate tag patterns for fuzzy matching
     const tagPatterns = [];
     for (const word of words) {
       const base = word.replace(/s$/, '');
@@ -60,6 +84,7 @@ exports.handler = async (event) => {
       tagPatterns.push(`%${base}s%`); // plural
     }
 
+    // --- Step 1: Try keyword / tag match ---
     const query = `
       SELECT question_pattern AS question, answer
       FROM chatbot_knowledge
@@ -72,10 +97,24 @@ exports.handler = async (event) => {
       ORDER BY created_at DESC
       LIMIT 3
     `;
-
     const values = [searchTerm, tagPatterns];
 
-    const result = await pool.query(query, values);
+    let result = await pool.query(query, values);
+
+    // --- Step 2: If no result, use local Python embeddings ---
+    if (result.rows.length === 0) {
+      console.log("No keyword/tag results, using local Python embeddings...");
+      const embedding = await getEmbeddingFromPython(question);
+
+      const vectorQuery = `
+        SELECT question_pattern AS question, answer
+        FROM chatbot_knowledge
+        WHERE embedding IS NOT NULL
+        ORDER BY embedding <-> $1
+        LIMIT 3
+      `;
+      result = await pool.query(vectorQuery, [embedding]);
+    }
 
     let answer;
     if (result.rows.length === 0) {
