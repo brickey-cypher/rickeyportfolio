@@ -22,7 +22,9 @@ const pool = new Pool({
 async function generateEmbedding(text) {
   const safeText = text.replace(/"/g, '\\"');
   const scriptPath = path.resolve(__dirname, "../../local_embedder/generate_single_embedding.py");
-  const command = `python "${scriptPath}" "${safeText}"`;
+  const pythonExecutable = path.resolve(__dirname, "../../local_embedder/venv/Scripts/python.exe");
+  const command = `"${pythonExecutable}" "${scriptPath}" "${safeText}"`;
+  console.log("Running command:", command);
 
   try {
     const output = execSync(command, { encoding: "utf-8" }).trim();
@@ -33,6 +35,7 @@ async function generateEmbedding(text) {
     throw err;
   }
 }
+
 
 // Retry helper
 async function generateWithRetry(text, retries = 3) {

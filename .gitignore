@@ -449,3 +449,5 @@ yarn-error.log*
 .astro/
 
 ggshield/
+README_Project_Cheat_Sheet.md
+netlify/build/entry.mjs
