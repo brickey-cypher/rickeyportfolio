@@ -24,7 +24,7 @@ function MessageBubble({ msg }) {
           lineHeight: '1.4',
           ...(msg.from === 'user'
             ? { borderBottomRightRadius: '4px' }
-            : { borderTopLeftRadius: '4px' })
+            : { borderTopLeftRadius: '4px' }),
         }}
       >
         {msg.text.split('\n').map((line, idx) => (
@@ -52,7 +52,7 @@ function MessageList({ messages }) {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        minHeight: '200px'
+        minHeight: '200px',
       }}
     >
       {messages.map((msg, i) => (
@@ -72,9 +72,9 @@ function ChatbotPopup() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // NEW: Conversation starter state
+  // Conversation starter state (array of strings)
   const [conversationStarters] = useState([
-    "What are programming languages have you worked with?",
+    "What programming languages have you worked with?",
     "Tell me about your skills",
     "What's your experience with cybersecurity?",
     "How did you build this chatbot?"
@@ -110,13 +110,13 @@ function ChatbotPopup() {
     if (!userMessage || isLoading) return;
 
     // Add user message
-    setMessages(prev => [...prev, { from: 'user', text: userMessage }]);
+    setMessages((prev) => [...prev, { from: 'user', text: userMessage }]);
     setInput('');
     setIsLoading(true);
     setStartersVisible(false); // Hide starters after interaction
 
     // Add typing indicator
-    setMessages(prev => [...prev, { from: 'bot', text: '...', isTyping: true }]);
+    setMessages((prev) => [...prev, { from: 'bot', text: '...', isTyping: true }]);
 
     try {
       const response = await fetch('/.netlify/functions/chatbot', {
@@ -130,18 +130,18 @@ function ChatbotPopup() {
       const data = await response.json();
 
       // Remove typing indicator and add bot response
-      setMessages(prev => {
-        const withoutTyping = prev.filter(msg => !msg.isTyping);
+      setMessages((prev) => {
+        const withoutTyping = prev.filter((msg) => !msg.isTyping);
         return [
           ...withoutTyping,
-          { from: 'bot', text: data.answer || "I'm not sure how to respond to that." }
+          { from: 'bot', text: data.answer || "I'm not sure how to respond to that." },
         ];
       });
     } catch (error) {
       console.error('Error:', error);
-      setMessages(prev => [
-        ...prev.filter(msg => !msg.isTyping),
-        { from: 'bot', text: 'Sorry, I encountered an error. Please try again.' }
+      setMessages((prev) => [
+        ...prev.filter((msg) => !msg.isTyping),
+        { from: 'bot', text: 'Sorry, I encountered an error. Please try again.' },
       ]);
     } finally {
       setIsLoading(false);
@@ -172,8 +172,8 @@ function ChatbotPopup() {
           zIndex: 1000,
           transition: 'transform 0.2s',
         }}
-        onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
-        onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+        onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+        onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
       >
         {isOpen ? '×' : '💬'}
@@ -195,20 +195,22 @@ function ChatbotPopup() {
             flexDirection: 'column',
             zIndex: 1000,
             boxShadow: '0 5px 25px rgba(0,0,0,0.2)',
-            overflow: 'hidden'
+            overflow: 'hidden',
           }}
         >
           {/* Chat Header */}
-          <div style={{
-            padding: '12px 16px',
-            background: '#007acc',
-            color: 'white',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}>
+          <div
+            style={{
+              padding: '12px 16px',
+              background: '#007acc',
+              color: 'white',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
             <span>Chat with me</span>
             <button
               onClick={() => setIsOpen(false)}
@@ -221,8 +223,8 @@ function ChatbotPopup() {
                 padding: '4px 8px',
                 borderRadius: '4px',
               }}
-              onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
-              onMouseOut={e => e.currentTarget.style.background = 'transparent'}
+              onMouseOver={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.2)')}
+              onMouseOut={(e) => (e.currentTarget.style.background = 'transparent')}
               aria-label="Close chat"
             >
               ×
@@ -234,14 +236,16 @@ function ChatbotPopup() {
 
           {/* Conversation Starter Buttons */}
           {startersVisible && (
-            <div style={{
-              padding: '8px 12px',
-              borderTop: '1px solid #eee',
-              backgroundColor: '#f9f9f9',
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '6px'
-            }}>
+            <div
+              style={{
+                padding: '8px 12px',
+                borderTop: '1px solid #eee',
+                backgroundColor: '#f9f9f9',
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '6px',
+              }}
+            >
               {conversationStarters.map((starter, idx) => (
                 <button
                   key={idx}
@@ -252,7 +256,8 @@ function ChatbotPopup() {
                     borderRadius: '16px',
                     padding: '6px 12px',
                     cursor: 'pointer',
-                    fontSize: '13px'
+                    fontSize: '13px',
+                    color: 'black',
                   }}
                 >
                   {starter}
@@ -262,13 +267,15 @@ function ChatbotPopup() {
           )}
 
           {/* Input Area */}
-          <div style={{
-            padding: '12px',
-            borderTop: '1px solid #eee',
-            display: 'flex',
-            gap: '8px',
-            backgroundColor: '#f9f9f9'
-          }}>
+          <div
+            style={{
+              padding: '12px',
+              borderTop: '1px solid #eee',
+              display: 'flex',
+              gap: '8px',
+              backgroundColor: '#f9f9f9',
+            }}
+          >
             <input
               ref={inputRef}
               type="text"
@@ -291,11 +298,11 @@ function ChatbotPopup() {
                 cursor: 'pointer',
                 fontSize: '14px',
                 fontWeight: 'bold',
-                opacity: (isLoading || !input.trim()) ? 0.7 : 1,
+                opacity: isLoading || !input.trim() ? 0.7 : 1,
                 transition: 'opacity 0.2s',
                 whiteSpace: 'nowrap',
                 height: '44px',
-                minWidth: '60px'
+                minWidth: '60px',
               }}
             >
               {isLoading ? 'Sending...' : 'Send'}
