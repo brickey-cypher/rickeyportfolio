@@ -3,6 +3,7 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // allow self-signed certs
 
 require('dotenv').config();
+const synonymMap = require('./synonyms.json');
 const { Pool } = require('pg');
 const { exec } = require('child_process');
 
@@ -73,18 +74,30 @@ exports.handler = async (event) => {
     }
 
     const searchTerm = `%${question}%`;
-    const words = question.toLowerCase().match(/\w+/g) || [];
 
-    // Generate tag patterns for fuzzy matching
+    // --- Step 0: Expand synonyms ---
+    const rawWords = question.toLowerCase().match(/\w+/g) || [];
+
+    const expandedWords = new Set();
+    for (const word of rawWords) {
+      expandedWords.add(word);
+      if (synonymMap[word]) {
+        for (const synonym of synonymMap[word]) {
+          expandedWords.add(synonym.toLowerCase());
+        }
+      }
+    }
+
+    // --- Step 1: Create tag patterns for SQL ILIKE matching ---
     const tagPatterns = [];
-    for (const word of words) {
+    for (const word of Array.from(expandedWords)) {
       const base = word.replace(/s$/, '');
       tagPatterns.push(`%${word}%`);
       if (base !== word) tagPatterns.push(`%${base}%`); // singular
       tagPatterns.push(`%${base}s%`); // plural
     }
 
-    // --- Step 1: Try keyword / tag match ---
+    // --- Step 2: Try keyword / tag match ---
     const query = `
       SELECT question_pattern AS question, answer
       FROM chatbot_knowledge
@@ -101,7 +114,7 @@ exports.handler = async (event) => {
 
     let result = await pool.query(query, values);
 
-    // --- Step 2: If no result, use local Python embeddings ---
+    // --- Step 3: If no result, use local Python embeddings ---
     if (result.rows.length === 0) {
       console.log("No keyword/tag results, using local Python embeddings...");
       const embedding = await getEmbeddingFromPython(question);
@@ -116,6 +129,7 @@ exports.handler = async (event) => {
       result = await pool.query(vectorQuery, [embedding]);
     }
 
+    // --- Step 4: Format and return answer ---
     let answer;
     if (result.rows.length === 0) {
       answer = "Sorry, I don't know that yet.";

@@ -1,0 +1,15 @@
+{
+  "javascript": ["js", "java"],
+  "python": [],
+  "sql": [],
+  "frontend": ["ui", "user interface"],
+  "backend": ["server", "api", "database"],
+  "cybersecurity": ["infosec", "information security", "network security"],
+  "nodejs": ["node.js", "node"],
+  "portfolio": ["projects", "work", "samples"],
+  "skills": ["abilities", "competencies", "proficiencies"],
+  "soft skills": ["communication", "teamwork", "problem solving", "adaptability"],
+  "experience": ["background", "history", "career"],
+  "express": ["expressjs", "express.js"],
+  "postgresql": ["postgres", "psql", "sql database"]
+}

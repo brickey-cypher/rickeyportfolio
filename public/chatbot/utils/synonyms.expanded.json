@@ -1,0 +1,78 @@
+{
+  "javascript": [
+    "javascript",
+    "js",
+    "java"
+  ],
+  "python": [
+    "python"
+  ],
+  "sql": [
+    "sql"
+  ],
+  "frontend": [
+    "frontend",
+    "ui",
+    "user interface",
+    "front-end"
+  ],
+  "backend": [
+    "backend",
+    "server",
+    "api",
+    "database",
+    "back-end",
+    "server-side",
+    "api layer"
+  ],
+  "cybersecurity": [
+    "cybersecurity",
+    "infosec",
+    "information security",
+    "network security",
+    "security"
+  ],
+  "nodejs": [
+    "nodejs",
+    "node.js",
+    "node"
+  ],
+  "portfolio": [
+    "portfolio",
+    "projects",
+    "work",
+    "samples"
+  ],
+  "skills": [
+    "skills",
+    "abilities",
+    "competencies",
+    "proficiencies",
+    "experience"
+  ],
+  "soft skills": [
+    "soft skills",
+    "communication",
+    "teamwork",
+    "problem solving",
+    "adaptability",
+    "time management"
+  ],
+  "experience": [
+    "experience",
+    "background",
+    "history",
+    "career"
+  ],
+  "express": [
+    "express",
+    "expressjs",
+    "express.js"
+  ],
+  "postgresql": [
+    "postgresql",
+    "postgres",
+    "psql",
+    "sql database"
+  ]
+}
