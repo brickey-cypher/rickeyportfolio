@@ -7,7 +7,7 @@ function MessageBubble({ msg }) {
   return (
     <div
       style={{
-        marginBottom: 10,
+        marginBottom: 6,
         textAlign: msg.from === 'user' ? 'right' : 'left',
       }}
     >
@@ -47,12 +47,12 @@ function MessageList({ messages }) {
     <div
       style={{
         flex: 1,
-        padding: '15px',
+        padding: '10px 15px 0 15px',
         overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        gap: '10px',
-        minHeight: '200px',
+        gap: '6px',
+        minHeight: '180px',
       }}
     >
       {messages.map((msg, i) => (
@@ -72,7 +72,6 @@ function ChatbotPopup() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Conversation starter state (array of strings)
   const [conversationStarters] = useState([
     "What programming languages have you worked with?",
     "Tell me about your skills",
@@ -83,16 +82,13 @@ function ChatbotPopup() {
 
   const inputRef = useRef(null);
 
-  // Focus input when chat opens
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isOpen]);
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
+  const handleInputChange = (e) => setInput(e.target.value);
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -101,21 +97,17 @@ function ChatbotPopup() {
     }
   };
 
-  const toggleChat = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleChat = () => setIsOpen(!isOpen);
 
   async function sendMessage(textOverride) {
     const userMessage = (textOverride || input).trim();
     if (!userMessage || isLoading) return;
 
-    // Add user message
     setMessages((prev) => [...prev, { from: 'user', text: userMessage }]);
     setInput('');
     setIsLoading(true);
-    setStartersVisible(false); // Hide starters after interaction
+    setStartersVisible(false);
 
-    // Add typing indicator
     setMessages((prev) => [...prev, { from: 'bot', text: '...', isTyping: true }]);
 
     try {
@@ -129,7 +121,6 @@ function ChatbotPopup() {
 
       const data = await response.json();
 
-      // Remove typing indicator and add bot response
       setMessages((prev) => {
         const withoutTyping = prev.filter((msg) => !msg.isTyping);
         return [
@@ -150,7 +141,6 @@ function ChatbotPopup() {
 
   return (
     <div style={{ fontFamily: 'Arial, sans-serif' }}>
-      {/* Chat Toggle Button */}
       <button
         onClick={toggleChat}
         style={{
@@ -179,7 +169,6 @@ function ChatbotPopup() {
         {isOpen ? '×' : '💬'}
       </button>
 
-      {/* Chat Popup */}
       {isOpen && (
         <div
           style={{
@@ -198,7 +187,6 @@ function ChatbotPopup() {
             overflow: 'hidden',
           }}
         >
-          {/* Chat Header */}
           <div
             style={{
               padding: '12px 16px',
@@ -231,14 +219,12 @@ function ChatbotPopup() {
             </button>
           </div>
 
-          {/* Messages */}
           <MessageList messages={messages} />
 
-          {/* Conversation Starter Buttons */}
           {startersVisible && (
             <div
               style={{
-                padding: '8px 12px',
+                padding: '8px 12px 10px',
                 borderTop: '1px solid #eee',
                 backgroundColor: '#f9f9f9',
                 display: 'flex',
@@ -266,10 +252,9 @@ function ChatbotPopup() {
             </div>
           )}
 
-          {/* Input Area */}
           <div
             style={{
-              padding: '12px',
+              padding: '10px 12px 12px',
               borderTop: '1px solid #eee',
               display: 'flex',
               gap: '8px',
