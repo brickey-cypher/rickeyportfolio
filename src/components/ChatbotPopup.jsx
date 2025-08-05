@@ -47,7 +47,7 @@ function MessageList({ messages }) {
     <div
       style={{
         flex: 1,
-        padding: '10px 15px 0 15px',
+        padding: '16px 15px 0 15px',
         overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
