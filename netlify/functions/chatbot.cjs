@@ -3,7 +3,7 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // allow self-signed certs
 
 require('dotenv').config();
-const synonymMap = require('./synonyms.cjs');
+const synonymMap = require('./synonyms.json');
 const { Pool } = require('pg');
 const { exec } = require('child_process');
 
@@ -73,11 +73,14 @@ exports.handler = async (event) => {
       };
     }
 
-    const searchTerm = `%${question}%`;
+    // Sanitize input by removing punctuation (except spaces)
+    const sanitizedQuestion = question.toLowerCase().replace(/[^\w\s]/g, '');
+    const searchTerm = `%${sanitizedQuestion}%`;
 
-    // --- Step 0: Expand synonyms ---
-    const rawWords = question.toLowerCase().match(/\w+/g) || [];
+    // Extract words from sanitized question
+    const rawWords = sanitizedQuestion.match(/\w+/g) || [];
 
+    // Expand words with synonyms from synonymMap
     const expandedWords = new Set();
     for (const word of rawWords) {
       expandedWords.add(word);
@@ -88,16 +91,16 @@ exports.handler = async (event) => {
       }
     }
 
-    // --- Step 1: Create tag patterns for SQL ILIKE matching ---
+    // Generate tag patterns for fuzzy matching
     const tagPatterns = [];
-    for (const word of Array.from(expandedWords)) {
+    for (const word of expandedWords) {
       const base = word.replace(/s$/, '');
       tagPatterns.push(`%${word}%`);
-      if (base !== word) tagPatterns.push(`%${base}%`); // singular
-      tagPatterns.push(`%${base}s%`); // plural
+      if (base !== word) tagPatterns.push(`%${base}%`); // singular form
+      tagPatterns.push(`%${base}s%`); // plural form
     }
 
-    // --- Step 2: Try keyword / tag match ---
+    // --- Step 1: Try keyword / tag match ---
     const query = `
       SELECT question_pattern AS question, answer
       FROM chatbot_knowledge
@@ -114,7 +117,7 @@ exports.handler = async (event) => {
 
     let result = await pool.query(query, values);
 
-    // --- Step 3: If no result, use local Python embeddings ---
+    // --- Step 2: If no result, use local Python embeddings ---
     if (result.rows.length === 0) {
       console.log("No keyword/tag results, using local Python embeddings...");
       const embedding = await getEmbeddingFromPython(question);
@@ -129,7 +132,6 @@ exports.handler = async (event) => {
       result = await pool.query(vectorQuery, [embedding]);
     }
 
-    // --- Step 4: Format and return answer ---
     let answer;
     if (result.rows.length === 0) {
       answer = "Sorry, I don't know that yet.";
