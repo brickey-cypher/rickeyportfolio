@@ -3,7 +3,7 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // allow self-signed certs
 
 require('dotenv').config();
-const synonymMap = require('./synonyms.json');
+const synonymMap = require('./synonyms.cjs');
 const { Pool } = require('pg');
 const { exec } = require('child_process');
 
