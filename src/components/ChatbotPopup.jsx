@@ -123,6 +123,10 @@ function ChatbotHeader({ onClose }) {
   );
 }
 
+ChatbotHeader.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
+
 // Extracted: ConversationStarters
 function ConversationStarters({ starters, onSelect }) {
   return (
@@ -156,6 +160,11 @@ function ConversationStarters({ starters, onSelect }) {
     </div>
   );
 }
+
+ConversationStarters.propTypes = {
+  starters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
 
 // Extracted: ChatInput
 function ChatInput({
@@ -218,6 +227,18 @@ function ChatInput({
     </div>
   );
 }
+
+ChatInput.propTypes = {
+  input: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onKeyPress: PropTypes.func.isRequired,
+  onSend: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ]),
+};
 
 function useChatbotLogic() {
   const [isOpen, setIsOpen] = useState(false);

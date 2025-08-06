@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const synonymsPath = path.join(__dirname, '../../public/chatbot/utils/synonyms.cjs);
+const synonymsPath = path.join(__dirname, '../../public/chatbot/utils/synonyms.cjs');
 
 let synonymMap = {};
 try {
