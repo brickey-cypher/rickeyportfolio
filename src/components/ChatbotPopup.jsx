@@ -47,12 +47,11 @@ function MessageList({ messages }) {
     <div
       style={{
         flex: 1,
-        padding: '16px 15px 0 15px',
         overflowY: 'auto',
+        padding: '16px 15px 0 15px',
         display: 'flex',
         flexDirection: 'column',
         gap: '6px',
-        minHeight: '180px',
       }}
     >
       {messages.map((msg, i) => (
@@ -176,7 +175,7 @@ function ChatbotPopup() {
             bottom: 90,
             right: 20,
             width: 320,
-            maxHeight: '60vh',
+            height: '60vh', // 🔧 Force fixed height
             background: 'white',
             border: '1px solid #ddd',
             borderRadius: 12,
@@ -187,6 +186,7 @@ function ChatbotPopup() {
             overflow: 'hidden',
           }}
         >
+          {/* Header */}
           <div
             style={{
               padding: '12px 16px',
@@ -219,79 +219,84 @@ function ChatbotPopup() {
             </button>
           </div>
 
-          <MessageList messages={messages} />
+          {/* Content Area */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <MessageList messages={messages} />
 
-          {startersVisible && (
+            {startersVisible && (
+              <div
+                style={{
+                  padding: '8px 12px 10px',
+                  borderTop: '1px solid #eee',
+                  backgroundColor: '#f9f9f9',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '6px',
+                  overflowY: 'auto',
+                }}
+              >
+                {conversationStarters.map((starter, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => sendMessage(starter)}
+                    style={{
+                      background: '#e0e0e0',
+                      border: 'none',
+                      borderRadius: '16px',
+                      padding: '6px 12px',
+                      cursor: 'pointer',
+                      fontSize: '13px',
+                      color: 'black',
+                    }}
+                  >
+                    {starter}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Input */}
             <div
               style={{
-                padding: '8px 12px 10px',
+                padding: '10px 12px 12px',
                 borderTop: '1px solid #eee',
-                backgroundColor: '#f9f9f9',
                 display: 'flex',
-                flexWrap: 'wrap',
-                gap: '6px',
+                gap: '8px',
+                backgroundColor: '#f9f9f9',
               }}
             >
-              {conversationStarters.map((starter, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => sendMessage(starter)}
-                  style={{
-                    background: '#e0e0e0',
-                    border: 'none',
-                    borderRadius: '16px',
-                    padding: '6px 12px',
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                    color: 'black',
-                  }}
-                >
-                  {starter}
-                </button>
-              ))}
+              <input
+                ref={inputRef}
+                type="text"
+                className="chat-input"
+                value={input}
+                onChange={handleInputChange}
+                onKeyPress={handleKeyPress}
+                placeholder="Type a message..."
+                disabled={isLoading}
+              />
+              <button
+                onClick={() => sendMessage()}
+                disabled={isLoading || !input.trim()}
+                style={{
+                  background: '#007acc',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '20px',
+                  padding: '0 20px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                  opacity: isLoading || !input.trim() ? 0.7 : 1,
+                  transition: 'opacity 0.2s',
+                  whiteSpace: 'nowrap',
+                  height: '44px',
+                  minWidth: '60px',
+                }}
+              >
+                {isLoading ? 'Sending...' : 'Send'}
+              </button>
             </div>
-          )}
-
-          <div
-            style={{
-              padding: '10px 12px 12px',
-              borderTop: '1px solid #eee',
-              display: 'flex',
-              gap: '8px',
-              backgroundColor: '#f9f9f9',
-            }}
-          >
-            <input
-              ref={inputRef}
-              type="text"
-              className="chat-input"
-              value={input}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
-              placeholder="Type a message..."
-              disabled={isLoading}
-            />
-            <button
-              onClick={() => sendMessage()}
-              disabled={isLoading || !input.trim()}
-              style={{
-                background: '#007acc',
-                color: 'white',
-                border: 'none',
-                borderRadius: '20px',
-                padding: '0 20px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: 'bold',
-                opacity: isLoading || !input.trim() ? 0.7 : 1,
-                transition: 'opacity 0.2s',
-                whiteSpace: 'nowrap',
-                height: '44px',
-                minWidth: '60px',
-              }}
-            >
-              {isLoading ? 'Sending...' : 'Send'}
-            </button>
           </div>
         </div>
       )}
