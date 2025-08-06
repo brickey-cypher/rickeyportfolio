@@ -82,7 +82,144 @@ MessageList.propTypes = {
 };
 
 // --- ChatbotPopup component ---
-function ChatbotPopup() {
+// Extracted: ChatbotHeader
+function ChatbotHeader({ onClose }) {
+  return (
+    <div
+      style={{
+        padding: '12px 16px',
+        background: '#007acc',
+        color: 'white',
+        fontSize: '16px',
+        fontWeight: 'bold',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+    >
+      <span>Chat with me</span>
+      <button
+        onClick={onClose}
+        style={{
+          background: 'transparent',
+          border: 'none',
+          color: 'white',
+          cursor: 'pointer',
+          fontSize: '18px',
+          padding: '4px 8px',
+          borderRadius: '4px',
+        }}
+        onMouseOver={(e) =>
+          (e.currentTarget.style.background = 'rgba(255,255,255,0.2)')
+        }
+        onMouseOut={(e) =>
+          (e.currentTarget.style.background = 'transparent')
+        }
+        aria-label="Close chat"
+      >
+        ×
+      </button>
+    </div>
+  );
+}
+
+// Extracted: ConversationStarters
+function ConversationStarters({ starters, onSelect }) {
+  return (
+    <div
+      style={{
+        padding: '8px 12px 10px',
+        borderTop: '1px solid #eee',
+        backgroundColor: '#f9f9f9',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '6px',
+      }}
+    >
+      {starters.map((starter, idx) => (
+        <button
+          key={idx}
+          onClick={() => onSelect(starter)}
+          style={{
+            background: '#e0e0e0',
+            border: 'none',
+            borderRadius: '16px',
+            padding: '6px 12px',
+            cursor: 'pointer',
+            fontSize: '13px',
+            color: 'black',
+          }}
+        >
+          {starter}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// Extracted: ChatInput
+function ChatInput({
+  input,
+  onInputChange,
+  onKeyPress,
+  onSend,
+  isLoading,
+  inputRef,
+}) {
+  return (
+    <div
+      style={{
+        padding: '10px 12px 12px',
+        borderTop: '1px solid #eee',
+        display: 'flex',
+        gap: '8px',
+        backgroundColor: '#f9f9f9',
+      }}
+    >
+      <input
+        ref={inputRef}
+        type="text"
+        className="chat-input"
+        value={input}
+        onChange={onInputChange}
+        onKeyPress={onKeyPress}
+        placeholder="Type a message..."
+        disabled={isLoading}
+        style={{
+          flex: 1,
+          borderRadius: '20px',
+          border: '1px solid #ccc',
+          padding: '10px 15px',
+          fontSize: '14px',
+          outline: 'none',
+        }}
+      />
+      <button
+        onClick={onSend}
+        disabled={isLoading || !input.trim()}
+        style={{
+          background: '#007acc',
+          color: 'white',
+          border: 'none',
+          borderRadius: '20px',
+          padding: '0 20px',
+          cursor: isLoading || !input.trim() ? 'default' : 'pointer',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          opacity: isLoading || !input.trim() ? 0.7 : 1,
+          transition: 'opacity 0.2s',
+          whiteSpace: 'nowrap',
+          height: '44px',
+          minWidth: '60px',
+        }}
+      >
+        {isLoading ? 'Sending...' : 'Send'}
+      </button>
+    </div>
+  );
+}
+
+function useChatbotLogic() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { from: 'bot', text: 'Hi! Ask me about my projects or experience.' },
@@ -115,7 +252,7 @@ function ChatbotPopup() {
     }
   };
 
-  const toggleChat = () => setIsOpen(!isOpen);
+  const toggleChat = () => setIsOpen((prev) => !prev);
 
   async function sendMessage(textOverride) {
     const userMessage = (textOverride || input).trim();
@@ -156,6 +293,39 @@ function ChatbotPopup() {
       setIsLoading(false);
     }
   }
+
+  return {
+    isOpen,
+    setIsOpen,
+    messages,
+    input,
+    isLoading,
+    startersVisible,
+    conversationStarters,
+    inputRef,
+    handleInputChange,
+    handleKeyPress,
+    sendMessage,
+    toggleChat,
+    setStartersVisible,
+  };
+}
+
+function ChatbotPopup() {
+  const {
+    isOpen,
+    setIsOpen,
+    messages,
+    input,
+    isLoading,
+    startersVisible,
+    conversationStarters,
+    inputRef,
+    handleInputChange,
+    handleKeyPress,
+    sendMessage,
+    toggleChat,
+  } = useChatbotLogic();
 
   return (
     <div style={{ fontFamily: 'Arial, sans-serif' }}>
@@ -205,124 +375,25 @@ function ChatbotPopup() {
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              padding: '12px 16px',
-              background: '#007acc',
-              color: 'white',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <span>Chat with me</span>
-            <button
-              onClick={() => setIsOpen(false)}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                color: 'white',
-                cursor: 'pointer',
-                fontSize: '18px',
-                padding: '4px 8px',
-                borderRadius: '4px',
-              }}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.background = 'rgba(255,255,255,0.2)')
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.background = 'transparent')
-              }
-              aria-label="Close chat"
-            >
-              ×
-            </button>
-          </div>
+          <ChatbotHeader onClose={() => setIsOpen(false)} />
 
           <MessageList messages={messages} />
 
           {startersVisible && (
-            <div
-              style={{
-                padding: '8px 12px 10px',
-                borderTop: '1px solid #eee',
-                backgroundColor: '#f9f9f9',
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '6px',
-              }}
-            >
-              {conversationStarters.map((starter, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => sendMessage(starter)}
-                  style={{
-                    background: '#e0e0e0',
-                    border: 'none',
-                    borderRadius: '16px',
-                    padding: '6px 12px',
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                    color: 'black',
-                  }}
-                >
-                  {starter}
-                </button>
-              ))}
-            </div>
+            <ConversationStarters
+              starters={conversationStarters}
+              onSelect={sendMessage}
+            />
           )}
 
-          <div
-            style={{
-              padding: '10px 12px 12px',
-              borderTop: '1px solid #eee',
-              display: 'flex',
-              gap: '8px',
-              backgroundColor: '#f9f9f9',
-            }}
-          >
-            <input
-              ref={inputRef}
-              type="text"
-              className="chat-input"
-              value={input}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
-              placeholder="Type a message..."
-              disabled={isLoading}
-              style={{
-                flex: 1,
-                borderRadius: '20px',
-                border: '1px solid #ccc',
-                padding: '10px 15px',
-                fontSize: '14px',
-                outline: 'none',
-              }}
-            />
-            <button
-              onClick={() => sendMessage()}
-              disabled={isLoading || !input.trim()}
-              style={{
-                background: '#007acc',
-                color: 'white',
-                border: 'none',
-                borderRadius: '20px',
-                padding: '0 20px',
-                cursor: isLoading || !input.trim() ? 'default' : 'pointer',
-                fontSize: '14px',
-                fontWeight: 'bold',
-                opacity: isLoading || !input.trim() ? 0.7 : 1,
-                transition: 'opacity 0.2s',
-                whiteSpace: 'nowrap',
-                height: '44px',
-                minWidth: '60px',
-              }}
-            >
-              {isLoading ? 'Sending...' : 'Send'}
-            </button>
-          </div>
+          <ChatInput
+            input={input}
+            onInputChange={handleInputChange}
+            onKeyPress={handleKeyPress}
+            onSend={() => sendMessage()}
+            isLoading={isLoading}
+            inputRef={inputRef}
+          />
         </div>
       )}
     </div>
