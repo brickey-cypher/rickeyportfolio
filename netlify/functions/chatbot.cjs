@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* eslint-disable @typescript-eslint/no-require-imports */
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // allow self-signed certs
 

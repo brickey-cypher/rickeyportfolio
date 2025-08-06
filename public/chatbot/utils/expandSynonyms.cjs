@@ -1,10 +1,12 @@
+
 // expandSynonyms.js
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 // === CONFIGURATION ===
 
 // Path to your existing custom synonyms
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const inputPath = path.resolve(__dirname, "synonyms.json");
 
 // Path where the expanded synonyms will be written
