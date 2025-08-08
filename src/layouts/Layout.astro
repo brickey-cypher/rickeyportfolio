@@ -12,27 +12,33 @@ const {
 
 <!doctype html>
 <html lang="en" class={theme.value ? 'dark' : ''}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
-    <style is:inline>
-      html, body {
-        background-color: transparent !important;
-      }
-    </style>
-    <script is:inline>
-      (function() {
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = stored === 'dark' || (!stored && prefersDark);
-        if (isDark) document.documentElement.classList.add('dark');
-      })();
-    </script>
-    <link rel="canonical" href={Astro.url.href} />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="generator" content={Astro.generator} />
+
+  <style is:inline>
+    html, body {
+      background-color: transparent !important;
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = stored === 'dark' || (!stored && prefersDark);
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <script src="/scripts/matrixLoader.js" defer></script>
+
+  <link rel="canonical" href={Astro.url.href} />
+</head>
+
 
   <body class="text-white dark:text-white transition-colors duration-300">
     <a href="#main-content" class="sr-only focus:not-sr-only absolute top-0 left-0 bg-white text-black p-2 z-50">

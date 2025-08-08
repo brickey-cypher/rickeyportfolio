@@ -6,6 +6,7 @@ export function initMatrixRain() {
     console.error('Matrix canvas not found');
     return;
   }
+
   const ctx = canvas.getContext('2d');
   if (!ctx) {
     console.error('Canvas context not available');
@@ -20,11 +21,18 @@ export function initMatrixRain() {
   let intervalId;
 
   function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transforms
+    ctx.scale(dpr, dpr);
+
     columns = Math.floor(window.innerWidth / fontSize);
     drops = new Array(columns).fill(1);
-    console.log(`Canvas resized: ${canvas.width}x${canvas.height}, columns: ${columns}`);
+
+    console.log(`Canvas resized: ${canvas.width}x${canvas.height}, DPR: ${dpr}`);
 
     if (intervalId) {
       clearInterval(intervalId);
@@ -36,6 +44,7 @@ export function initMatrixRain() {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    ctx.globalAlpha = 0.8; // Semi-transparent characters
     ctx.fillStyle = '#00f6ff'; // bright blue
     ctx.font = fontSize + 'px monospace';
 
@@ -56,4 +65,3 @@ export function initMatrixRain() {
   // Resize listener
   window.addEventListener('resize', resizeCanvas);
 }
-
