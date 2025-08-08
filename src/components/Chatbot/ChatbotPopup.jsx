@@ -1,10 +1,10 @@
 // ChatbotPopup.jsx
 import React from 'react';
-import ChatbotHeader from './Chatbot/ChatbotHeader';
-import MessageList from './Chatbot/MessageList';
-import ConversationStarters from './Chatbot/ConversationStarters';
-import ChatInput from './Chatbot/ChatInput';
-import useChatbotLogic from './Chatbot/useChatbotLogic';
+import ChatbotHeader from './ChatbotHeader';
+import MessageList from './MessageList';
+import ConversationStarters from './ConversationStarters';
+import ChatInput from './ChatInput';
+import useChatbotLogic from './useChatbotLogic';
 import '../styles/chat.css';
 
 function ChatbotPopup() {
