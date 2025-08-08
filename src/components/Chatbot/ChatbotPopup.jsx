@@ -5,7 +5,7 @@ import MessageList from './MessageList';
 import ConversationStarters from './ConversationStarters';
 import ChatInput from './ChatInput';
 import useChatbotLogic from './useChatbotLogic';
-import '../styles/chat.css';
+import '../../styles/chat.css';
 
 function ChatbotPopup() {
   const {
